@@ -170,7 +170,10 @@ class BaseAPIClient:
         """
         await self._wait_rate_limit()
 
-        url = f"{self.base_url}{path}" if path.startswith("/") else f"{self.base_url}/{path}"
+        if path:
+            url = f"{self.base_url}{path}" if path.startswith("/") else f"{self.base_url}/{path}"
+        else:
+            url = self.base_url
         req_headers = {**self.headers, **(headers or {})}
 
         req_timeout = timeout or self.timeout
