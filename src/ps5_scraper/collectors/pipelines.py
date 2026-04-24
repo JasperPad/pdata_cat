@@ -105,7 +105,7 @@ class CollectionPipeline:
 
         # Execute collection
         try:
-            stats = await collector.collect_category(category_id)
+            stats = await collector.collect_category(category_id, start_offset=start_offset)
         except Exception as exc:
             error_msg = f"Collection failed: {exc}"
             logger.error(error_msg)

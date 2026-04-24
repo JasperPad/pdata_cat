@@ -10,12 +10,41 @@ Features:
 from __future__ import annotations
 
 import logging
+import re
 import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 
 logger = logging.getLogger(__name__)
+
+# Allowed characters for SQL identifiers (table names, column names)
+_VALID_IDENTIFIER_RE = re.compile(r"^[a-zA-Z_][a-zA-Z0-9_]*$")
+
+
+def _validate_identifier(name: str, label: str = "identifier") -> str:
+    """Validate a SQL identifier against a strict whitelist.
+
+    Only allows alphanumeric characters and underscores, must start with
+    letter or underscore.
+
+    Args:
+        name: The identifier to validate.
+        label: Human-readable label for error messages.
+
+    Returns:
+        The validated identifier string.
+
+    Raises:
+        ValueError: If the identifier contains invalid characters.
+    """
+    if not _VALID_IDENTIFIER_RE.match(name):
+        raise ValueError(
+            f"Invalid {label} '{name}': must contain only [a-zA-Z0-9_] "
+            f"and start with [a-zA-Z_]"
+        )
+    return name
+
 
 SCHEMA_VERSION = 1
 
@@ -104,6 +133,15 @@ class DatabaseManager:
         """Create parent directory if it doesn't exist."""
         if self.db_path != ":memory:" and not self.db_path.startswith("file:"):
             Path(self.db_path).parent.mkdir(parents=True, exist_ok=True)
+
+    def __enter__(self) -> "DatabaseManager":
+        """Context manager entry — initialize and return self."""
+        self.initialize()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+        """Context manager exit — no-op (connections are per-call)."""
+        return None
 
     def _get_db_path_for_connect(self) -> str:
         """Get the actual path/URI to use for sqlite3.connect().
@@ -196,7 +234,15 @@ class DatabaseManager:
         Args:
             table_name: Table to modify.
             columns: Dict of column_name → column_type definition.
+
+        Raises:
+            ValueError: If table_name or any column name contains invalid characters.
         """
+        # Validate identifiers to prevent SQL injection
+        _validate_identifier(table_name, "table name")
+        for col_name in columns:
+            _validate_identifier(col_name, "column name")
+
         with self._get_raw_connection() as conn:
             cursor = conn.cursor()
             # Get existing columns

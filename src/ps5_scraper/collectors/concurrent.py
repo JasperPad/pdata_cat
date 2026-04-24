@@ -54,11 +54,14 @@ class ConcurrentCollector:
     async def collect_category(
         self,
         category_id: str,
+        *,
+        start_offset: int = 0,
     ) -> dict[str, Any]:
         """Collect all games from a category with pagination.
 
         Args:
             category_id: The PS Store category UUID to collect.
+            start_offset: Offset to resume collection from (for checkpoint/resume).
 
         Returns:
             Dict with statistics:
@@ -74,7 +77,7 @@ class ConcurrentCollector:
             "errors": [],
         }
 
-        offset = 0
+        offset = start_offset
 
         while True:
             try:
@@ -91,14 +94,14 @@ class ConcurrentCollector:
                 if page_result["is_last"]:
                     break
 
-                offset += self.page_size
+                offset += page_result["fetched"]
 
             except Exception as exc:
                 error_msg = f"Error at offset {offset}: {exc}"
                 logger.error(error_msg)
                 stats["errors"].append(error_msg)
 
-                # On error, still advance to avoid infinite loop
+                # On error, still advance by page_size to avoid infinite loop
                 offset += self.page_size
 
                 # Safety: stop after too many consecutive errors

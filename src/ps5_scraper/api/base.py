@@ -193,4 +193,9 @@ class BaseAPIClient:
                 json=json,
                 headers=req_headers,
             )
-            return response.json()
+            try:
+                return response.json()
+            except Exception as json_exc:
+                raise APIClientError(
+                    f"Failed to decode JSON response: {json_exc}"
+                ) from json_exc
