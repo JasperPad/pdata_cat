@@ -28,6 +28,7 @@ from ps5_scraper import __version__
 from ps5_scraper.collectors.pipelines import CollectionPipeline
 from ps5_scraper.config import Settings
 from ps5_scraper.models.game import Game, GameImage
+from ps5_scraper.models.region import REGIONS
 from ps5_scraper.storage.database import DatabaseManager
 from ps5_scraper.storage.repositories import GameRepository
 
@@ -35,7 +36,7 @@ logger = logging.getLogger(__name__)
 
 app = typer.Typer(
     name="ps5-scraper",
-    help="PS5 港服（PlayStation Store Hong Kong）数据采集工具 — 图片链接采集 + SQLite 持久化",
+    help="PS5 多区域数据采集工具 — PlayStation Store 图片链接采集 + SQLite 持久化",
     add_completion=False,
 )
 console = Console()
@@ -93,11 +94,30 @@ def collect_cmd(
     full: bool = typer.Option(False, "--full", help="忽略断点续采，全量重采"),
     workers: int = typer.Option(4, "--workers", "-w", help="并发线程数"),
     output: str | None = typer.Option(None, "--output", "-o", help="数据库输出路径"),
+    region: str | None = typer.Option(None, "--region", "-r", help="指定区域代码 (HK/US/JP/TW/...)，默认 HK"),
+    all_regions: bool = typer.Option(False, "--all-regions", help="采集所有可用区域"),
 ) -> None:
-    """开始采集 PS5 港服数据.
+    """开始采集 PS5 Store 数据.
 
-    支持断点续采，中断后重新运行可从上次位置继续。
+    支持单区域或多区域采集，支持断点续采，中断后重新运行可从上次位置继续。
+
+    示例:
+      ps5-scraper collect                    # 采集港服（默认）
+      ps5-scraper collect --region US        # 采集美服
+      ps5-scraper collect --region JP --full  # 全量重采日服
+      ps5-scraper collect --all-regions      # 采集所有区域
     """
+    # Validate single-region option (case-insensitive input)
+    if region and not all_regions:
+        from ps5_scraper.models.region import get_region as _validate_region
+        normalized = region.upper().strip()
+        if not _validate_region(normalized):
+            console.print(f"[red]无效区域代码: {region}[/red]")
+            console.print(f"[dim]可用区域: {', '.join(sorted(REGIONS.keys()))}[/dim]")
+            raise typer.Exit(1)
+        # Store normalized uppercase value
+        region = normalized
+
     settings = _get_settings(_opt_config)
 
     # Override db path if specified
@@ -113,34 +133,79 @@ def collect_cmd(
         TextColumn("[progress.description]{task.description}"),
         console=console,
     ) as progress:
-        task = progress.add_task(f"正在采集 {category} 数据...", total=None)
-
         pipeline = CollectionPipeline(settings)
 
         try:
-            result = asyncio.run(pipeline.run_full_collection(category, full_mode=full))
+            if all_regions:
+                # Multi-region mode: collect all enabled regions (deduplicated, sorted)
+                from ps5_scraper.models.region import get_enabled_regions
+                region_list = [r.code for r in get_enabled_regions()]
+                task = progress.add_task(f"正在采集 {len(region_list)} 个区域数据...", total=None)
+                result = asyncio.run(pipeline.run_multi_region_collection(
+                    regions=region_list,
+                    category_key=category,
+                    full_mode=full,
+                ))
+            else:
+                # Single-region mode
+                target_region = region or "HK"
+                task = progress.add_task(f"正在采集 {target_region} 区域 {category} 数据...", total=None)
+                result = asyncio.run(pipeline.run_full_collection(
+                    category, full_mode=full, region=target_region,
+                ))
+
             progress.update(task, description=f"✅ 采集完成!")
         except Exception as exc:
             progress.update(task, description=f"❌ 采集失败: {exc}")
             console.print(f"[red]采集出错: {exc}[/red]")
             raise typer.Exit(1) from exc
 
-    # Display results
-    console.print(Panel(
-        f"[bold]分类:[/bold] {result.get('category', 'N/A')}\n"
-        f"[bold]获取:[/bold] {result.get('total_fetched', 0)} 条\n"
-        f"[bold]存储:[/bold] {result.get('total_stored', 0)} 条\n"
-        f"[bold]图片:[/bold] {result.get('total_images', 0)} 张\n"
-        f"[bold]耗时:[/bold] {result.get('duration_seconds', 0):.1f}s\n"
-        f"[bold]状态:[/bold] {'[green]成功[/green]' if result.get('success') else '[yellow]有错误[/yellow]'}",
-        title="[bold green]采集结果[/bold green]" if result.get("success") else "[bold yellow]采集结果[/bold yellow]",
-        border_style="green" if result.get("success") else "yellow",
-    ))
+    # Display results (DRY: unified display helper)
+    is_multi = all_regions and "regions_collected" in result
+    _display_collection_result(result, region=region or "HK", multi_region=is_multi)
 
     if result.get("errors"):
         console.print("[red]错误列表:[/red]")
         for err in result["errors"]:
             console.print(f"  • {err}")
+
+
+def _display_collection_result(
+    result: dict[str, Any],
+    *,
+    region: str = "HK",
+    multi_region: bool = False,
+) -> None:
+    """Unified collection result panel display.
+
+    Args:
+        result: Collection pipeline result dict.
+        region: Region code for single-region display.
+        multi_region: If True, show regions_collected instead of region code.
+    """
+    success = result.get("success", False)
+
+    # Build common lines
+    lines = [
+        f"[bold]分类:[/bold] {result.get('category', 'N/A')}",
+    ]
+    if multi_region:
+        lines.append(f"[bold]区域数:[/bold] {result.get('regions_collected', 0)}")
+    else:
+        lines.append(f"[bold]区域:[/bold] {region}")
+    lines.extend([
+        f"[bold]获取:[/bold] {result.get('total_fetched', 0)} 条",
+        f"[bold]存储:[/bold] {result.get('total_stored', 0)} 条",
+        f"[bold]图片:[/bold] {result.get('total_images', 0)} 张",
+        f"[bold]耗时:[/bold] {result.get('duration_seconds', 0):.1f}s",
+        f"[bold]状态:[/bold] {'[green]成功[/green]' if success else '[yellow]有错误[/yellow]'}",
+    ])
+
+    title_prefix = "多区域采集结果" if multi_region else "采集结果"
+    title = f"[bold green]{title_prefix}[/bold green]" if success else f"[bold yellow]{title_prefix}[/bold yellow]"
+    border = "green" if success else "yellow"
+
+    console.print(Panel("\n".join(lines), title=title, border_style=border))
 
 
 # ─── export command ───────────────────────────────────────
@@ -240,7 +305,7 @@ def status_cmd() -> None:
             if all_games:
                 last_updated = max(g.last_updated for g in all_games)
 
-    table = Table(title="PS5 港服数据库状态")
+    table = Table(title="PS5 数据库状态")
     table.add_column("指标", style="cyan")
     table.add_column("值", style="green")
 

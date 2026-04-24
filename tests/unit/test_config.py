@@ -227,3 +227,57 @@ class TestSettingsModelDump:
         ]
         for attr in attrs:
             assert hasattr(settings, attr), f"Settings missing attribute: {attr}"
+
+
+# ─── v2.0: Multi-region support ──────────────────────────────────
+
+
+class TestMultiRegionConfig:
+    """Test multi-region configuration support in Settings."""
+
+    def test_default_region_is_hk(self, temp_config_file):
+        """Default region should be 'hk' for backward compatibility."""
+        from ps5_scraper.models.region import get_region
+        settings = Settings(config_file=temp_config_file)
+        # The default locale should still be zh-hant-hk
+        assert settings.locale == "zh-hant-hk"
+
+    def test_get_psstore_client_with_region(self, temp_config_file):
+        """get_psstore_client(region_code) should use region's locale."""
+        from ps5_scraper.models.region import get_region
+        settings = Settings(config_file=temp_config_file)
+        client = settings.get_psstore_client(region="US")
+
+        assert client is not None
+        assert client.locale == "en-us"
+        assert client.requests_per_minute == 60
+
+    def test_get_psstore_client_jp_region(self, temp_config_file):
+        """get_psstore_client with 'jp' should use Japanese locale."""
+        settings = Settings(config_file=temp_config_file)
+        client = settings.get_psstore_client(region="JP")
+
+        assert client.locale == "ja-jp"
+
+    def test_get_psstore_client_no_region_backward_compat(self, temp_config_file):
+        """get_psstore_client() without region uses original locale field."""
+        settings = Settings(config_file=temp_config_file)
+        client = settings.get_psstore_client()
+
+        # Should use the locale from YAML/env (zh-hant-hk)
+        assert client.locale == "zh-hant-hk"
+
+    def test_get_psstore_client_invalid_region_raises(self, temp_config_file):
+        """Invalid region code should raise ValueError."""
+        settings = Settings(config_file=temp_config_file)
+        with pytest.raises(ValueError, match="Unknown region"):
+            settings.get_psstore_client(region="xx_invalid")
+
+    def test_get_enabled_regions_from_settings(self, temp_config_file):
+        """Settings can provide list of enabled regions."""
+        from ps5_scraper.models.region import get_enabled_regions
+        enabled = get_enabled_regions()
+        codes = {r.code for r in enabled}
+        assert "HK" in codes
+        assert "US" in codes
+        assert "JP" in codes

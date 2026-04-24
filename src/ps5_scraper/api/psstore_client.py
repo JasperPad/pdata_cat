@@ -35,6 +35,7 @@ class PSStoreClient(BaseAPIClient):
         self,
         *,
         locale: str = "zh-hant-hk",
+        currency: str = "HKD",
         requests_per_minute: int = 30,
         **kwargs: Any,
     ) -> None:
@@ -44,6 +45,7 @@ class PSStoreClient(BaseAPIClient):
             **kwargs,
         )
         self.locale = locale
+        self.currency = currency  # v2.0: multi-region support
 
     async def fetch_category_games(
         self,
@@ -89,14 +91,14 @@ class PSStoreClient(BaseAPIClient):
         Variable structure matches the actual PS Store GraphQL schema:
         - id: Category UUID (top-level)
         - pageArgs: Nested pagination { offset, size }
-        - currency: Price currency code (HKD for HK store)
+        - currency: Price currency code (e.g., HKD, USD, JPY)
         """
         return {
             "operationName": "categoryGridRetrieve",
             "variables": {
                 "id": category_id,
                 "pageArgs": {"offset": offset, "size": size},
-                "currency": "HKD",
+                "currency": self.currency,
             },
             "extensions": {
                 "persistedQuery": {

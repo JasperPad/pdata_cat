@@ -1,0 +1,4726 @@
+{
+  "generated_at": "2026-04-24T18:02:16.905637",
+  "graphql_hash_used": "4ce7d410a4db2c8b635a48c1dcec375906ff63b19dadd87e073f8fd0c0481d35",
+  "total_regions_tested": 21,
+  "accessible_count": 20,
+  "failed_count": 1,
+  "hk_baseline": 7048,
+  "results": [
+    {
+      "region_name": "🇭🇰 香港港服(基线)",
+      "locale": "zh-hant-hk",
+      "currency": "HKD",
+      "note": "已完成采集 7,048 款",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 7048,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2 (日英文版)",
+        "幻想大陸戰記 深淵 (中日英文版)",
+        "《MARVEL Tōkon: Fighting Souls》 (中日英韓文版)",
+        "《MARVEL Tōkon: Fighting Souls》數位豪華版 (中日英韓文版)",
+        "《MARVEL Tōkon: Fighting Souls》終極版 (中日英韓文版)",
+        "Beast of Reincarnation (簡體中文, 韓文, 英文, 繁體中文, 日文)",
+        "《轉世之獸》數位豪華版 (中日英韓文版)",
+        "職棒野球魂2026 (中日英韓文版)",
+        "《刺客教條：黑旗 同步重置》 (中日英韓文版)",
+        "《刺客教條：黑旗 同步重置》豪華版 (中日英韓文版)",
+        "艾恩葛朗特 迴盪新聲 數位豪華版 (中日英韓文版)",
+        "艾恩葛朗特 迴盪新聲 (簡體中文, 韓文, 英文, 泰文, 繁體中文, 日文)"
+      ],
+      "sample_prices": [
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2 (日英文版)",
+          "base": "HK$308.00",
+          "discounted": "HK$308.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "幻想大陸戰記 深淵 (中日英文版)",
+          "base": "HK$348.00",
+          "discounted": "HK$348.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《MARVEL Tōkon: Fighting Souls》 (中日英韓文版)",
+          "base": "HK$328.00",
+          "discounted": "HK$328.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《MARVEL Tōkon: Fighting Souls》數位豪華版 (中日英韓文版)",
+          "base": "HK$468.00",
+          "discounted": "HK$468.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《MARVEL Tōkon: Fighting Souls》終極版 (中日英韓文版)",
+          "base": "HK$548.00",
+          "discounted": "HK$548.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation (簡體中文, 韓文, 英文, 繁體中文, 日文)",
+          "base": "HK$348.00",
+          "discounted": "HK$348.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《轉世之獸》數位豪華版 (中日英韓文版)",
+          "base": "HK$398.00",
+          "discounted": "HK$398.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "職棒野球魂2026 (中日英韓文版)",
+          "base": "HK$348.00",
+          "discounted": "HK$348.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《刺客教條：黑旗 同步重置》 (中日英韓文版)",
+          "base": "HK$468.00",
+          "discounted": "HK$468.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《刺客教條：黑旗 同步重置》豪華版 (中日英韓文版)",
+          "base": "HK$548.00",
+          "discounted": "HK$548.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "艾恩葛朗特 迴盪新聲 數位豪華版 (中日英韓文版)",
+          "base": "HK$599.00",
+          "discounted": "HK$599.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "艾恩葛朗特 迴盪新聲 (簡體中文, 韓文, 英文, 泰文, 繁體中文, 日文)",
+          "base": "HK$449.00",
+          "discounted": "HK$449.00",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 1418.8,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇺🇸 美国美服",
+      "locale": "en-us",
+      "currency": "USD",
+      "note": "最大市场",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 9149,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls Digital Deluxe Edition",
+        "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+        "Beast of Reincarnation",
+        "Beast of Reincarnation Digital Deluxe Edition",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "$49.99",
+          "discounted": "$49.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "$49.99",
+          "discounted": "$49.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "$59.99",
+          "discounted": "$59.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Digital Deluxe Editio",
+          "base": "$84.99",
+          "discounted": "$84.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+          "base": "$99.99",
+          "discounted": "$99.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "$59.99",
+          "discounted": "$59.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation Digital Deluxe Edition",
+          "base": "$69.99",
+          "discounted": "$69.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "$59.99",
+          "discounted": "$59.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "$69.99",
+          "discounted": "$69.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "$89.99",
+          "discounted": "$89.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "$109.99",
+          "discounted": "$109.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "$59.99",
+          "discounted": "$59.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 572.6,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇯🇵 日本日服",
+      "locale": "ja-jp",
+      "currency": "JPY",
+      "note": "第二大市场",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 7370,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "超新時空ゲイム ネプテューヌ∞",
+        "超新時空ゲイム ネプテューヌ∞ デジタルデラックス版",
+        "ブリガンダイン アビス",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Soulsアルティメットエディション",
+        "MARVEL Tōkon: Fighting Soulsデジタルデラックスエディション",
+        "Beast of Reincarnation",
+        "『Beast of Reincarnation』 デジタルデラックスエディション",
+        "亰都ザナドゥ -桜花幻舞-",
+        "プロ野球スピリッツ2026",
+        "プロ野球スピリッツ2026 デジタルデラックス版"
+      ],
+      "sample_prices": [
+        {
+          "game": "超新時空ゲイム ネプテューヌ∞",
+          "base": "¥8,580",
+          "discounted": "¥8,580",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "超新時空ゲイム ネプテューヌ∞ デジタルデラックス版",
+          "base": "¥14,300",
+          "discounted": "¥14,300",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "ブリガンダイン アビス",
+          "base": "¥9,020",
+          "discounted": "¥9,020",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "¥6,600",
+          "discounted": "¥6,600",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "¥7,980",
+          "discounted": "¥7,980",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Soulsアルティメットエディション",
+          "base": "¥11,980",
+          "discounted": "¥11,980",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Soulsデジタルデラックスエディション",
+          "base": "¥10,480",
+          "discounted": "¥10,480",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "¥7,979",
+          "discounted": "¥7,979",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "『Beast of Reincarnation』 デジタルデラックスエディション",
+          "base": "¥8,980",
+          "discounted": "¥8,980",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "亰都ザナドゥ -桜花幻舞-",
+          "base": "¥7,920",
+          "discounted": "¥7,920",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "プロ野球スピリッツ2026",
+          "base": "¥8,778",
+          "discounted": "¥8,778",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "プロ野球スピリッツ2026 デジタルデラックス版",
+          "base": "¥10,978",
+          "discounted": "¥10,978",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 832.2,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇬🇧 英国英服",
+      "locale": "en-gb",
+      "currency": "GBP",
+      "note": "欧洲代表",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 9137,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls Digital Deluxe Edition",
+        "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+        "Beast of Reincarnation",
+        "Beast of Reincarnation Digital Deluxe Edition",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "£44.99",
+          "discounted": "£44.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "£44.99",
+          "discounted": "£44.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "£59.99",
+          "discounted": "£59.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Digital Deluxe Editio",
+          "base": "£79.99",
+          "discounted": "£79.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+          "base": "£94.99",
+          "discounted": "£94.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "£49.99",
+          "discounted": "£49.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation Digital Deluxe Edition",
+          "base": "£57.99",
+          "discounted": "£57.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "£39.99",
+          "discounted": "£39.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "£54.99",
+          "discounted": "£54.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "£74.99",
+          "discounted": "£74.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "£94.99",
+          "discounted": "£94.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "£49.99",
+          "discounted": "£49.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 457.2,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇩🇪 德国德服",
+      "locale": "de-de",
+      "currency": "EUR",
+      "note": "欧洲大陆代表",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 9126,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls Digital Deluxe Edition",
+        "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+        "Beast of Reincarnation",
+        "Beast of Reincarnation Digital Deluxe Edition",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced",
+        "Assassin's Creed Black Flag Resynced Deluxe Edition"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "€69,99",
+          "discounted": "€69,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Digital Deluxe Editio",
+          "base": "€94,99",
+          "discounted": "€94,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+          "base": "€109,99",
+          "discounted": "€109,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "€54,99",
+          "discounted": "€54,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation Digital Deluxe Edition",
+          "base": "€64,99",
+          "discounted": "€64,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "€69,99",
+          "discounted": "€69,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "€89,99",
+          "discounted": "€89,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "€109,99",
+          "discounted": "€109,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "€59,99",
+          "discounted": "€59,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced Deluxe Editio",
+          "base": "€69,99",
+          "discounted": "€69,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 750.8,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇫🇷 法国法服",
+      "locale": "fr-fr",
+      "currency": "EUR",
+      "note": "",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 9122,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls Édition Deluxe numérique",
+        "MARVEL Tōkon: Fighting Souls Édition Ultimate",
+        "Beast of Reincarnation",
+        "Beast of Reincarnation Édition digitale deluxe",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "€69,99",
+          "discounted": "€69,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Édition Deluxe numéri",
+          "base": "€94,99",
+          "discounted": "€94,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Édition Ultimate",
+          "base": "€109,99",
+          "discounted": "€109,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "€54,99",
+          "discounted": "€54,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation Édition digitale deluxe",
+          "base": "€64,99",
+          "discounted": "€64,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "€69,99",
+          "discounted": "€69,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "€89,99",
+          "discounted": "€89,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "€109,99",
+          "discounted": "€109,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "€59,99",
+          "discounted": "€59,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 667.1,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇨🇦 加拿大",
+      "locale": "en-ca",
+      "currency": "CAD",
+      "note": "北美双语",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 9142,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls Digital Deluxe Edition",
+        "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+        "Beast of Reincarnation",
+        "Beast of Reincarnation Digital Deluxe Edition",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "$66.99",
+          "discounted": "$66.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "$66.99",
+          "discounted": "$66.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "$79.99",
+          "discounted": "$79.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Digital Deluxe Editio",
+          "base": "$104.99",
+          "discounted": "$104.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+          "base": "$129.99",
+          "discounted": "$129.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "$79.99",
+          "discounted": "$79.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation Digital Deluxe Edition",
+          "base": "$92.99",
+          "discounted": "$92.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "$79.99",
+          "discounted": "$79.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "$93.49",
+          "discounted": "$93.49",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "$119.99",
+          "discounted": "$119.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "$146.49",
+          "discounted": "$146.49",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "$79.99",
+          "discounted": "$79.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 656.5,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇦🇺 澳大利亚",
+      "locale": "en-au",
+      "currency": "AUD",
+      "note": "大洋洲",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 9108,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls Digital Deluxe Edition",
+        "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+        "Beast of Reincarnation",
+        "Beast of Reincarnation Digital Deluxe Edition",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "$69.95",
+          "discounted": "$69.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "$69.95",
+          "discounted": "$69.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "$109.95",
+          "discounted": "$109.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Digital Deluxe Editio",
+          "base": "$137.95",
+          "discounted": "$137.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+          "base": "$159.95",
+          "discounted": "$159.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "$82.95",
+          "discounted": "$82.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation Digital Deluxe Edition",
+          "base": "$97.95",
+          "discounted": "$97.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "$75.95",
+          "discounted": "$75.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "$99.95",
+          "discounted": "$99.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "$129.95",
+          "discounted": "$129.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "$159.95",
+          "discounted": "$159.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "$99.95",
+          "discounted": "$99.95",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 1179.9,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇧🇷 巴西",
+      "locale": "pt-br",
+      "currency": "BRL",
+      "note": "南美",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 8940,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "Brigandine Abyss",
+        "Edição Digital Deluxe de MARVEL Tōkon: Fighting Souls",
+        "Edição Ultimate de MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls",
+        "Beast of Reincarnation",
+        "Beast of Reincarnation Edição Digital Deluxe",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "R$284,90",
+          "discounted": "R$284,90",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Brigandine Abyss",
+          "base": "R$284,90",
+          "discounted": "R$284,90",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Edição Digital Deluxe de MARVEL Tōkon: Fighting So",
+          "base": "R$484,50",
+          "discounted": "R$484,50",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Edição Ultimate de MARVEL Tōkon: Fighting Souls",
+          "base": "R$569,90",
+          "discounted": "R$569,90",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "R$339,90",
+          "discounted": "R$339,90",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "R$249,99",
+          "discounted": "R$249,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation Edição Digital Deluxe",
+          "base": "R$299,99",
+          "discounted": "R$299,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "R$339,90",
+          "discounted": "R$339,90",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "R$399,90",
+          "discounted": "R$399,90",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "R$512,90",
+          "discounted": "R$512,90",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "R$626,90",
+          "discounted": "R$626,90",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "R$299,90",
+          "discounted": "R$299,90",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 706.5,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇲🇽 墨西哥",
+      "locale": "es-mx",
+      "currency": "MXN",
+      "note": "拉美西班牙语",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 8965,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls Digital Deluxe Edition",
+        "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+        "Beast of Reincarnation",
+        "Edición Digital Deluxe de Beast of Reincarnation",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "US$49.99",
+          "discounted": "US$49.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "US$49.99",
+          "discounted": "US$49.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "US$59.99",
+          "discounted": "US$59.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Digital Deluxe Editio",
+          "base": "US$84.99",
+          "discounted": "US$84.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+          "base": "US$99.99",
+          "discounted": "US$99.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "US$59.99",
+          "discounted": "US$59.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Edición Digital Deluxe de Beast of Reincarnation",
+          "base": "US$69.99",
+          "discounted": "US$69.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "US$59.99",
+          "discounted": "US$59.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "US$69.99",
+          "discounted": "US$69.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "US$89.99",
+          "discounted": "US$89.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "US$109.99",
+          "discounted": "US$109.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "US$59.99",
+          "discounted": "US$59.99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 497.5,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇹🇼 台湾台服",
+      "locale": "zh-hant-tw",
+      "currency": "TWD",
+      "note": "繁体中文",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 6108,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2 (日英文版)",
+        "幻想大陸戰記 深淵 (中日英文版)",
+        "《MARVEL Tōkon: Fighting Souls》 (中日英韓文版)",
+        "《MARVEL Tōkon: Fighting Souls》數位豪華版 (中日英韓文版)",
+        "《MARVEL Tōkon: Fighting Souls》終極版 (中日英韓文版)",
+        "Beast of Reincarnation (簡體中文, 韓文, 英文, 繁體中文, 日文)",
+        "《轉世之獸》數位豪華版 (中日英韓文版)",
+        "職棒野球魂2026 (中日英韓文版)",
+        "《刺客教條：黑旗 同步重置》 (中日英韓文版)",
+        "《刺客教條：黑旗 同步重置》豪華版 (中日英韓文版)",
+        "艾恩葛朗特 迴盪新聲 數位豪華版 (中日英韓文版)",
+        "艾恩葛朗特 迴盪新聲 (簡體中文, 韓文, 英文, 泰文, 繁體中文, 日文)"
+      ],
+      "sample_prices": [
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2 (日英文版)",
+          "base": "NT$1,190",
+          "discounted": "NT$1,190",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "幻想大陸戰記 深淵 (中日英文版)",
+          "base": "NT$1,490",
+          "discounted": "NT$1,490",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《MARVEL Tōkon: Fighting Souls》 (中日英韓文版)",
+          "base": "NT$1,790",
+          "discounted": "NT$1,790",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《MARVEL Tōkon: Fighting Souls》數位豪華版 (中日英韓文版)",
+          "base": "NT$2,440",
+          "discounted": "NT$2,440",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《MARVEL Tōkon: Fighting Souls》終極版 (中日英韓文版)",
+          "base": "NT$2,990",
+          "discounted": "NT$2,990",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation (簡體中文, 韓文, 英文, 繁體中文, 日文)",
+          "base": "NT$1,498",
+          "discounted": "NT$1,498",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《轉世之獸》數位豪華版 (中日英韓文版)",
+          "base": "NT$1,698",
+          "discounted": "NT$1,698",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "職棒野球魂2026 (中日英韓文版)",
+          "base": "NT$1,390",
+          "discounted": "NT$1,390",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《刺客教條：黑旗 同步重置》 (中日英韓文版)",
+          "base": "NT$1,790",
+          "discounted": "NT$1,790",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《刺客教條：黑旗 同步重置》豪華版 (中日英韓文版)",
+          "base": "NT$2,090",
+          "discounted": "NT$2,090",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "艾恩葛朗特 迴盪新聲 數位豪華版 (中日英韓文版)",
+          "base": "NT$2,290",
+          "discounted": "NT$2,290",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "艾恩葛朗特 迴盪新聲 (簡體中文, 韓文, 英文, 泰文, 繁體中文, 日文)",
+          "base": "NT$1,790",
+          "discounted": "NT$1,790",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 786.8,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇨🇳 中国大陆国服",
+      "locale": "zh-cn",
+      "currency": "CNY",
+      "note": "如有独立store",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 35,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "异环 (简体中文)",
+        "双影奇境 (简体中文)",
+        "双影奇境-好友通行证 (简体中文)",
+        "星烬·烛耀山海 (简体中文)",
+        "波斯王子：失落的王冠 (简体中文)",
+        "明日方舟：终末地 (泰语, 日语, 韩语, 简体中文, 繁体中文, 英语)",
+        "宇宙机器人 (简体中文)",
+        "完蛋！我被美女包围了！2 (简体中文)",
+        "《失落之魂》 (日语, 韩语, 简体中文, 英语)",
+        "《失落之魂》数字豪华版 (日语, 韩语, 简体中文, 英语)",
+        "《气象档案馆》应用程序 (日语, 韩语, 简体中文, 繁体中文, 英语)",
+        "黑神话：悟空 (简体中文)"
+      ],
+      "sample_prices": [
+        {
+          "game": "异环 (简体中文)",
+          "base": "免费",
+          "discounted": "免费",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "双影奇境 (简体中文)",
+          "base": "198.00元",
+          "discounted": "198.00元",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "双影奇境-好友通行证 (简体中文)",
+          "base": "免费",
+          "discounted": "免费",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "星烬·烛耀山海 (简体中文)",
+          "base": "68.00元",
+          "discounted": "68.00元",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "波斯王子：失落的王冠 (简体中文)",
+          "base": "128.00元",
+          "discounted": "128.00元",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "明日方舟：终末地 (泰语, 日语, 韩语, 简体中文, 繁体中文, 英语)",
+          "base": "免费",
+          "discounted": "免费",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "宇宙机器人 (简体中文)",
+          "base": "298.00元",
+          "discounted": "298.00元",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "完蛋！我被美女包围了！2 (简体中文)",
+          "base": "59.00元",
+          "discounted": "59.00元",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《失落之魂》 (日语, 韩语, 简体中文, 英语)",
+          "base": "268.00元",
+          "discounted": "198.32元",
+          "discount_text": "-26%",
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《失落之魂》数字豪华版 (日语, 韩语, 简体中文, 英语)",
+          "base": "328.00元",
+          "discounted": "328.00元",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "《气象档案馆》应用程序 (日语, 韩语, 简体中文, 繁体中文, 英语)",
+          "base": "免费",
+          "discounted": "免费",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "黑神话：悟空 (简体中文)",
+          "base": "268.00元",
+          "discounted": "268.00元",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 387.9,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇰🇷 韩国韩服",
+      "locale": "ko-kr",
+      "currency": "KRW",
+      "note": "",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 6481,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "MARVEL Tōkon: Fighting Souls (한국어판)",
+        "MARVEL Tōkon: Fighting Souls 디지털 디럭스 에디션 (한국어판)",
+        "MARVEL Tōkon: Fighting Souls 얼티밋 에디션 (한국어판)",
+        "Beast of Reincarnation (중국어(간체자), 한국어, 영어, 일본어, 중국어(번체자))",
+        "윤회의 짐승 디지털 디럭스 에디션 (한국어판)",
+        "프로야구스피리츠 2026 (한국어판)",
+        "어쌔신 크리드 블랙 플래그 리싱크드 (한국어판)",
+        "어쌔신 크리드 블랙 플래그 리싱크드 디럭스 에디션 (한국어판)",
+        "에코스 오브 아인크라드 (중국어(간체자), 한국어, 태국어, 영어, 일본어, 중국어(번체자))",
+        "에코스 오브 아인크라드 디럭스 에디션 (한국어판)",
+        "에코스 오브 아인크라드 얼티밋 에디션 (한국어판)",
+        "DEAD OR ALIVE 6 Last Round (한국어판)"
+      ],
+      "sample_prices": [
+        {
+          "game": "MARVEL Tōkon: Fighting Souls (한국어판)",
+          "base": "69,800원",
+          "discounted": "69,800원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls 디지털 디럭스 에디션 (한국어판)",
+          "base": "94,800원",
+          "discounted": "94,800원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls 얼티밋 에디션 (한국어판)",
+          "base": "118,000원",
+          "discounted": "118,000원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation (중국어(간체자), 한국어, 영어, 일본어, 중국",
+          "base": "75,800원",
+          "discounted": "75,800원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "윤회의 짐승 디지털 디럭스 에디션 (한국어판)",
+          "base": "85,800원",
+          "discounted": "85,800원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "프로야구스피리츠 2026 (한국어판)",
+          "base": "70,000원",
+          "discounted": "70,000원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "어쌔신 크리드 블랙 플래그 리싱크드 (한국어판)",
+          "base": "71,000원",
+          "discounted": "71,000원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "어쌔신 크리드 블랙 플래그 리싱크드 디럭스 에디션 (한국어판)",
+          "base": "83,000원",
+          "discounted": "83,000원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "에코스 오브 아인크라드 (중국어(간체자), 한국어, 태국어, 영어, 일본어, 중국어(번체자",
+          "base": "79,800원",
+          "discounted": "79,800원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "에코스 오브 아인크라드 디럭스 에디션 (한국어판)",
+          "base": "99,800원",
+          "discounted": "99,800원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "에코스 오브 아인크라드 얼티밋 에디션 (한국어판)",
+          "base": "129,800원",
+          "discounted": "129,800원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "DEAD OR ALIVE 6 Last Round (한국어판)",
+          "base": "49,800원",
+          "discounted": "49,800원",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 679.8,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇮🇹 意大利意服",
+      "locale": "it-it",
+      "currency": "EUR",
+      "note": "",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 9117,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls Digital Deluxe Edition",
+        "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+        "Beast of Reincarnation",
+        "Digital Deluxe Edition di Beast of Reincarnation",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "€69,99",
+          "discounted": "€69,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Digital Deluxe Editio",
+          "base": "€94,99",
+          "discounted": "€94,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+          "base": "€109,99",
+          "discounted": "€109,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "€54,99",
+          "discounted": "€54,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Digital Deluxe Edition di Beast of Reincarnation",
+          "base": "€64,99",
+          "discounted": "€64,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "€69,99",
+          "discounted": "€69,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "€89,99",
+          "discounted": "€89,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "€109,99",
+          "discounted": "€109,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "€59,99",
+          "discounted": "€59,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 456.3,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇪🇸 西班牙西服",
+      "locale": "es-es",
+      "currency": "EUR",
+      "note": "",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 9124,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls Digital Deluxe Edition",
+        "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+        "Beast of Reincarnation",
+        "Edición Digital Deluxe de Beast of Reincarnation",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "49,99 €",
+          "discounted": "49,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "49,99 €",
+          "discounted": "49,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "69,99 €",
+          "discounted": "69,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Digital Deluxe Editio",
+          "base": "94,99 €",
+          "discounted": "94,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+          "base": "109,99 €",
+          "discounted": "109,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "54,99 €",
+          "discounted": "54,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Edición Digital Deluxe de Beast of Reincarnation",
+          "base": "64,99 €",
+          "discounted": "64,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "49,99 €",
+          "discounted": "49,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "69,99 €",
+          "discounted": "69,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "89,99 €",
+          "discounted": "89,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "109,99 €",
+          "discounted": "109,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "59,99 €",
+          "discounted": "59,99 €",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 472.3,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇳🇱 荷兰荷服",
+      "locale": "nl-nl",
+      "currency": "EUR",
+      "note": "",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 9099,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls Digital Deluxe Edition",
+        "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+        "Beast of Reincarnation",
+        "Beast of Reincarnation Digital Deluxe Edition",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "€69,99",
+          "discounted": "€69,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Digital Deluxe Editio",
+          "base": "€94,99",
+          "discounted": "€94,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+          "base": "€109,99",
+          "discounted": "€109,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "€54,99",
+          "discounted": "€54,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation Digital Deluxe Edition",
+          "base": "€64,99",
+          "discounted": "€64,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "€69,99",
+          "discounted": "€69,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "€89,99",
+          "discounted": "€89,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "€109,99",
+          "discounted": "€109,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "€59,99",
+          "discounted": "€59,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 1044.8,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇵🇹 葡萄牙",
+      "locale": "pt-pt",
+      "currency": "EUR",
+      "note": "",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 9115,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls - Edição Digital Deluxe",
+        "MARVEL Tōkon: Fighting Souls - Ultimate Edition",
+        "Beast of Reincarnation",
+        "Beast of Reincarnation Edição Digital Deluxe",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "€69,99",
+          "discounted": "€69,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls - Edição Digital Delu",
+          "base": "€94,99",
+          "discounted": "€94,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls - Ultimate Edition",
+          "base": "€109,99",
+          "discounted": "€109,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "€54,99",
+          "discounted": "€54,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation Edição Digital Deluxe",
+          "base": "€64,99",
+          "discounted": "€64,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "€49,99",
+          "discounted": "€49,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "€69,99",
+          "discounted": "€69,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "€89,99",
+          "discounted": "€89,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "€109,99",
+          "discounted": "€109,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "€59,99",
+          "discounted": "€59,99",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 989.1,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    },
+    {
+      "region_name": "🇹🇭 泰国泰服",
+      "locale": "th-th",
+      "currency": "THB",
+      "note": "东南亚",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 0,
+      "products_count": 0,
+      "has_pricing": false,
+      "has_discounts": false,
+      "discounted_count": 0,
+      "sample_game_names": [],
+      "sample_prices": [],
+      "response_time_ms": 788.9,
+      "product_structure_keys": []
+    },
+    {
+      "region_name": "🇻🇳 越南越服",
+      "locale": "vi-vn",
+      "currency": "VND",
+      "note": "东南亚",
+      "accessible": false,
+      "status_code": 200,
+      "error": "GraphQL errors: [{\"message\": \"\", \"path\": [\"categoryGridRetrieve\"], \"extensions\": {\"type\": \"NimbusNormalizedError\", \"error\": {\"referenceId\": \"4f256d7c-ed4c-417d-8698-2b9d05db6628\", \"code\": 3165954, \"reason\": \"internal_error\", \"source\": \"api\"}, \"statusCode\": 500, \"errorCode\": 3165954, \"apiName\": \"getCategory\"}, \"type\": \"NimbusNormalizedError\", \"error\": {\"referenceId\": \"4f256d7c-ed4c-417d-8698-2b9d05db6628\", \"code\": 3165954, \"reason\": \"internal_error\", \"source\": \"api\"}, \"statusCode\": 500, \"errorCode\": 3165954, \"apiName\": \"getCategory\"}]",
+      "total_games": null,
+      "products_count": 0,
+      "has_pricing": false,
+      "has_discounts": false,
+      "discounted_count": 0,
+      "sample_game_names": [],
+      "sample_prices": [],
+      "response_time_ms": 902.4,
+      "product_structure_keys": []
+    },
+    {
+      "region_name": "🇮🇩 印尼印尼服",
+      "locale": "id-id",
+      "currency": "IDR",
+      "note": "东南亚",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 0,
+      "products_count": 0,
+      "has_pricing": false,
+      "has_discounts": false,
+      "discounted_count": 0,
+      "sample_game_names": [],
+      "sample_prices": [],
+      "response_time_ms": 929.5,
+      "product_structure_keys": []
+    },
+    {
+      "region_name": "🇮🇳 印度印服",
+      "locale": "en-in",
+      "currency": "INR",
+      "note": "南亚",
+      "accessible": true,
+      "status_code": 200,
+      "error": null,
+      "total_games": 9108,
+      "products_count": 24,
+      "has_pricing": true,
+      "has_discounts": true,
+      "discounted_count": 12,
+      "sample_game_names": [
+        "Brigandine Abyss",
+        "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+        "MARVEL Tōkon: Fighting Souls",
+        "MARVEL Tōkon: Fighting Souls Digital Deluxe Edition",
+        "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+        "Beast of Reincarnation",
+        "Beast of Reincarnation Digital Deluxe Edition",
+        "eBaseball™: PRO SPIRIT 2026",
+        "Echoes of Aincrad",
+        "Echoes of Aincrad Deluxe Edition",
+        "Echoes of Aincrad Ultimate Edition",
+        "Assassin's Creed Black Flag Resynced"
+      ],
+      "sample_prices": [
+        {
+          "game": "Brigandine Abyss",
+          "base": "Rs 2,999",
+          "discounted": "Rs 2,999",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "METAL GEAR SOLID: MASTER COLLECTION Vol.2",
+          "base": "Rs 2,999",
+          "discounted": "Rs 2,999",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls",
+          "base": "Rs 3,999",
+          "discounted": "Rs 3,999",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Digital Deluxe Editio",
+          "base": "Rs 5,999",
+          "discounted": "Rs 5,999",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "MARVEL Tōkon: Fighting Souls Ultimate Edition",
+          "base": "Rs 7,199",
+          "discounted": "Rs 7,199",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation",
+          "base": "Rs 4,578",
+          "discounted": "Rs 4,578",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Beast of Reincarnation Digital Deluxe Edition",
+          "base": "Rs 5,411",
+          "discounted": "Rs 5,411",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "eBaseball™: PRO SPIRIT 2026",
+          "base": "Rs 4,162",
+          "discounted": "Rs 4,162",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad",
+          "base": "Rs 3,999",
+          "discounted": "Rs 3,999",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Deluxe Edition",
+          "base": "Rs 5,699",
+          "discounted": "Rs 5,699",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Echoes of Aincrad Ultimate Edition",
+          "base": "Rs 7,199",
+          "discounted": "Rs 7,199",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        },
+        {
+          "game": "Assassin's Creed Black Flag Resynced",
+          "base": "Rs 4,199",
+          "discounted": "Rs 4,199",
+          "discount_text": null,
+          "all_keys": [
+            "__typename",
+            "basePrice",
+            "discountText",
+            "discountedPrice",
+            "isExclusive",
+            "isFree",
+            "isTiedToSubscription",
+            "serviceBranding",
+            "upsellServiceBranding",
+            "upsellText"
+          ]
+        }
+      ],
+      "response_time_ms": 447.1,
+      "product_structure_keys": [
+        "__typename",
+        "id",
+        "localizedStoreDisplayClassification",
+        "media",
+        "name",
+        "npTitleId",
+        "platforms",
+        "price",
+        "skus",
+        "storeDisplayClassification"
+      ]
+    }
+  ]
+}

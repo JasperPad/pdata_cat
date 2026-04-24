@@ -26,7 +26,13 @@ class PSStoreParser:
     - Individual product dicts into Game models
     - Price information
     - Media/image links (v1.0 core feature)
+
+    Args:
+        region: Region code to inject into parsed Game models (default: "HK").
     """
+
+    def __init__(self, region: str = "HK") -> None:
+        self._region = region
 
     # ─── Safe Helpers ──────────────────────────────────────────────
 
@@ -141,6 +147,7 @@ class PSStoreParser:
             price=self.parse_price(price_raw),
             images=self.extract_images(media_raw),
             sku_count=len(skus_raw) if isinstance(skus_raw, list) else 0,
+            region=self._region,
         )
 
     def parse_price(self, price_dict: dict[str, Any] | None) -> GamePrice | None:

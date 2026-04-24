@@ -407,4 +407,83 @@ DB_FOREIGN_KEYS        = True
 
 ---
 
-> *本文档由工程团队维护，随版本更新。最后更新: v1.0.0 (2026-04-24)*
+## v2.0.0 多区域架构改造 — 2026-04-24
+
+### 开发阶段 (v2.0)
+
+| 阶段 | 内容 | 模块 | 测试数 |
+|------|------|------|:------:|
+| **Phase A** | 代码分析 + 架构规划 | 全部源码(16文件/4934行) | — |
+| **Phase B.1** | Region 模型 | `models/region.py` | 21 |
+| **Phase B.2** | Game 加 region 字段 | `models/game.py` | 22 |
+| **Phase B.3** | Config 多区域工厂 | `config.py` | 23 |
+| **Phase B.4** | Client currency 参数化 | `api/psstore_client.py` | 15 |
+| **Phase B.5** | DB Schema v2 迁移 | `storage/database.py` | 21 |
+| **Phase B.6** | Repositories region CRUD | `storage/repositories.py` | 26 |
+| **Phase B.7** | Parser region 注入 | `api/psstore_parser.py` | 17 |
+| **Phase B.8** | Collector region 传递 | `collectors/concurrent.py` | 16 |
+| **Phase B.9** | Pipeline 多区域编排 | `collectors/pipelines.py` | 17 |
+| **Phase B.10** | CLI --region/--all-regions | `cli.py` | 27 |
+| **Phase C** | DRY重构 + 防御性编程 | cli.py / database.py / models/ | +1 |
+| **Phase D** | 安全扫描 + 独立评审修复 | H×3/M×3 已修 | 0 |
+| **Phase E** | 文档更新 | README/CHANGELOG/WORKLOG | — |
+
+### Git Commit 日志 (v2.0)
+
+| Hash | 类型 | 说明 | 文件数 |
+|------|:----:|------|:------:|
+| `TBD` | feat | 多区域架构改造 (v2.0.0) | ~18 |
+
+### 代码审计结果 (v2.0)
+
+#### 安全扫描
+- ✅ **0 问题**
+  - SQL 参数化查询（全部使用 ? 占位符）
+  - PRAGMA 白名单校验（8 个合法指令）
+  - 无硬编码密钥、无 eval/exec、无命令注入
+  - httpx 参数化请求（无字符串拼接 URL）
+
+#### 独立代码评审发现 (14 项)
+
+| ID | 级别 | 描述 | 状态 |
+|----|:----:|------|:----:|
+| H-01 | 🔴 HIGH | Region 大小写不一致（REGIONS 小写 vs Game 默认大写） | ✅ 已修复 |
+| H-02 | 🔴 HIGH | `--all-regions` 未过滤 disabled 区域 | ✅ 已修复 |
+| H-03 | 🔴 HIGH | Pipeline 空区域列表导致静默成功 | ✅ 已修复 |
+| M-01 | 🟡 MEDIUM | CLI `--region` 输入未做大小写归一化 | ✅ 已修复 |
+| M-02 | 🟡 MEDIUM | Config.get_psstore_client() 缺少 region 类型校验 doc | 📝 记录 |
+| M-03 | 🟡 MEDIUM | merge_data() 未将 region 加入 always_update | ✅ 已修复 |
+| M-04 | 🟡 MEDIUM | PRAGMA f-string 虽安全但不符合最佳实践 | ✅ 已修复 |
+| M-05 | 🟡 MEDIUM | status 命令标题仍写 "港服" | ✅ 已修复 |
+| L-01 | ⚪ LOW | 建议添加 RegionValidator 自定义 Pydantic 类型 | 📝 记录 |
+| L-02 | ⚪ LOW | 建议多区域采集增加总 QPS 上限配置 | 📝 记录 |
+| L-03 | ⚪ LOW | 建议为 region 列添加 CHECK 约束 | 📝 记录 |
+| L-04 | ⚪ LOW | 建议添加 CLI `--regions-list` 子命令查看可用区域 | 📝 记录 |
+| L-05 | ⚪ LOW | 建议导出时支持按区域分文件 | 📝 记录 |
+| L-06 | ⚪ LOW | 建议数据库迁移记录表 | 📝 记录 |
+| L-07 | ⚪ LOW | 建议添加 region 字段到 export JSON | 📝 记录 |
+| L-08 | ⚪ LOW | 建议测试覆盖 get_region() 大小写不敏感边界用例 | 📝 记录 |
+
+### 技术决策 ADR (v2.0 新增)
+
+#### ADR-005: Region 代码统一大写格式
+
+**决策**: 所有 Region 代码使用 ISO 3166-1 alpha-2 大写格式 (`"HK"` 而非 `"hk"`)
+**原因**: 与 Game.region 默认值对齐；ISO 标准惯例；避免大小写混乱
+**影响**: REGIONS dict key 改为大写；get_region() 做大小写不敏感查找；CLI 输入自动归一化
+
+#### ADR-006: 同库多区域存储（非分库）
+
+**决策**: 所有区域数据存储在同一 SQLite 数据库，以 `region` 列分区
+**原因**: 简化运维（单文件）；便于跨区域查询对比；SQLite 单库性能足够
+**替代方案否决**: 分库（每区域一个 .db）— 增加运维复杂度，不利于跨区域查询
+
+#### ADR-007: 向后兼容默认 HK
+
+**决策**: 未指定 `--region` 时默认采集港服 (HK)，与 v1.0 行为完全一致
+**原因**: 零成本升级现有用户；港服是原始目标区域
+**破坏性变更**: 仅 DB Schema v1→v2 自动迁移（新增列，不影响已有数据）
+
+---
+
+> *本文档由工程团队维护，随版本更新。最后更新: v2.0.0 (2026-04-24)*

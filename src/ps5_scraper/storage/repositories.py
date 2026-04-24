@@ -37,8 +37,8 @@ def merge_data(existing: Game, new: Game) -> Game:
 
     new_dict = new.model_dump()
 
-    # Fields where we always take the new value (these are "always update" fields)
-    always_update = {"name", "price", "images", "last_updated", "sku_count"}
+    # Fields that should always be updated (even if new value is empty-ish)
+    always_update = {"name", "price", "images", "last_updated", "sku_count", "region"}
 
     for key, new_value in new_dict.items():
         if key in always_update:
@@ -91,8 +91,8 @@ class GameRepository:
                     star_rating_score, star_rating_total,
                     base_price, discounted_price, discount_text,
                     is_free, is_exclusive, service_branding,
-                    upsell_text, sku_count, last_updated
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    upsell_text, sku_count, last_updated, region
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 game.id,
                 game.name,
@@ -113,6 +113,7 @@ class GameRepository:
                 price.upsell_text if price else "",
                 game.sku_count,
                 game.last_updated,
+                game.region,
             ))
 
         # Upsert images after game is saved
@@ -164,6 +165,46 @@ class GameRepository:
         with self.db.get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT COUNT(*) FROM games")
+            return cursor.fetchone()[0]
+
+    def get_by_region(
+        self, region: str, limit: int = 100, offset: int = 0
+    ) -> list[Game]:
+        """Retrieve games filtered by region code.
+
+        Args:
+            region: Region code (e.g., 'US', 'JP', 'HK').
+            limit: Maximum number of results.
+            offset: Number of records to skip.
+
+        Returns:
+            List of Game instances matching the region.
+        """
+        with self.db.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT * FROM games WHERE region = ? "
+                "ORDER BY last_updated DESC LIMIT ? OFFSET ?",
+                (region, limit, offset),
+            )
+            rows = cursor.fetchall()
+
+        return [self._row_to_game(row) for row in rows]
+
+    def get_count_by_region(self, region: str) -> int:
+        """Get total number of games for a specific region.
+
+        Args:
+            region: Region code (e.g., 'US', 'JP', 'HK').
+
+        Returns:
+            Count of games in the specified region.
+        """
+        with self.db.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT COUNT(*) FROM games WHERE region = ?", (region,),
+            )
             return cursor.fetchone()[0]
 
     def delete_game(self, game_id: str) -> None:
@@ -254,7 +295,7 @@ class GameRepository:
         #   star_rating_score(8), star_rating_total(9), base_price(10),
         #   discounted_price(11), discount_text(12), is_free(13), is_exclusive(14),
         #   service_branding(15), upsell_text(16), sku_count(17), last_updated(18),
-        #   created_at(19), updated_at(20)
+        #   region(19), created_at(20), updated_at(21)
 
         has_price = row[10] or bool(row[12]) or row[13] == 1 or row[14] == 1
 
@@ -285,4 +326,5 @@ class GameRepository:
             images=[],  # Loaded separately via get_images()
             sku_count=row[17] if row[17] is not None else 0,
             last_updated=row[18] if row[18] is not None else 0,
+            region=row[19] if row[19] is not None else "HK",
         )

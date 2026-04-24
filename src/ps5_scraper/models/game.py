@@ -28,7 +28,14 @@ class GameImage(BaseModel):
 
 
 class Game(BaseModel):
-    """Game data model representing a PS Store product."""
+    """Game data model representing a PS Store product.
+
+    Attributes:
+        id: Unique Sony product ID (npTitleId, e.g., HP0002-PPSA08784_00-...).
+        name: Game title in the store's locale.
+        platforms: List of supported platforms (e.g., ["PS5"]).
+        region: Store region code (e.g., "hk", "us", "jp"). Defaults to "hk".
+    """
 
     id: str
     name: str
@@ -44,6 +51,7 @@ class Game(BaseModel):
     images: list[GameImage] = []
     sku_count: int = 0
     last_updated: int = 0
+    region: str = "HK"  # v2.0: multi-region support, defaults to HK for backward compat
 
 
 class CategoryResponse(BaseModel):

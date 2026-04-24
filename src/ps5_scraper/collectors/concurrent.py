@@ -18,9 +18,6 @@ from ps5_scraper.models.game import Game
 
 logger = logging.getLogger(__name__)
 
-# Module-level parser instance (shared across collectors)
-_parser = PSStoreParser()
-
 
 class ConcurrentCollector:
     """Concurrent collection engine for PS Store categories.
@@ -31,6 +28,7 @@ class ConcurrentCollector:
     Attributes:
         client: PSStoreClient for API calls.
         repo: GameRepository for persistence.
+        region: Region code for parser injection (default: "HK").
         max_workers: Max concurrent threads (reserved for future use).
         semaphore_limit: Semaphore limit for API concurrency.
         page_size: Number of items per API page.
@@ -41,15 +39,19 @@ class ConcurrentCollector:
         client: Any,  # PSStoreClient (avoiding circular import in type hint)
         repo: Any,  # GameRepository
         *,
+        region: str = "HK",
         max_workers: int = 4,
         semaphore_limit: int = 3,
         page_size: int = 24,
     ) -> None:
         self.client = client
         self.repo = repo
+        self.region = region
         self.max_workers = max_workers
         self.semaphore_limit = semaphore_limit
         self.page_size = page_size
+        # Instance-level parser with region injection
+        self._parser = PSStoreParser(region=region)
 
     async def collect_category(
         self,
@@ -134,8 +136,8 @@ class ConcurrentCollector:
             size=size,
         )
 
-        # Parse into CategoryResponse
-        category_response = _parser.parse_category_response(raw_response)
+        # Parse into CategoryResponse (using instance parser with region)
+        category_response = self._parser.parse_category_response(raw_response)
 
         # Store each game and its images
         stored_count = 0

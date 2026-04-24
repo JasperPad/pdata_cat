@@ -46,7 +46,7 @@ def _validate_identifier(name: str, label: str = "identifier") -> str:
     return name
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 # SQL DDL statements
 CREATE_GAMES_TABLE = """
@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS games (
     upsell_text TEXT DEFAULT '',
     sku_count INTEGER DEFAULT 0,
     last_updated INTEGER DEFAULT 0,
+    region TEXT DEFAULT 'HK',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -91,6 +92,7 @@ CREATE TABLE IF NOT EXISTS game_images (
 CREATE_INDEXES = [
     "CREATE INDEX IF NOT EXISTS idx_game_images_game_id ON game_images(game_id);",
     "CREATE INDEX IF NOT EXISTS idx_games_last_updated ON games(last_updated);",
+    "CREATE INDEX IF NOT EXISTS idx_games_region ON games(region);",
 ]
 
 CREATE_SCHEMA_VERSION_TABLE = """
@@ -166,25 +168,32 @@ class DatabaseManager:
         with self._get_raw_connection() as conn:
             cursor = conn.cursor()
             
-            # Set PRAGMA optimizations
+            # Set PRAGMA optimizations (internal constants only — safe)
+            _VALID_PRAGMAS = {"journal_mode", "synchronous", "cache_size", "temp_store", "mmap_size", "busy_timeout", "foreign_keys"}
             for pragma, value in PRAGMA_SETTINGS.items():
-                cursor.execute(f"PRAGMA {pragma} = {value}")
+                if pragma not in _VALID_PRAGMAS:
+                    raise ValueError(f"Unknown PRAGMA: {pragma}")
+                cursor.execute(f"PRAGMA [{pragma}] = {value}")
             
             # Create tables
             cursor.execute(CREATE_GAMES_TABLE)
             cursor.execute(CREATE_GAME_IMAGES_TABLE)
             cursor.execute(CREATE_SCHEMA_VERSION_TABLE)
             
-            # Create indexes
+            # ─── Schema migrations (BEFORE index creation) ──────
+            # v1 → v2: Add region column if missing
+            self._add_columns_if_missing("games", {"region": "TEXT DEFAULT 'HK'"})
+
+            # Create indexes (after migrations so new columns exist)
             for index_sql in CREATE_INDEXES:
                 cursor.execute(index_sql)
-            
+
             # Track schema version
             cursor.execute(
                 "INSERT OR IGNORE INTO schema_version (version) VALUES (?)",
                 (SCHEMA_VERSION,),
             )
-            
+
             conn.commit()
             logger.info("Database initialized at %s (schema v%d)", self.db_path, SCHEMA_VERSION)
 
@@ -245,8 +254,8 @@ class DatabaseManager:
 
         with self._get_raw_connection() as conn:
             cursor = conn.cursor()
-            # Get existing columns
-            cursor.execute(f"PRAGMA table_info({table_name})")
+            # Get existing columns (table_name validated by _validate_identifier above)
+            cursor.execute(f"PRAGMA table_info([{table_name}])")
             existing = {row[1] for row in cursor.fetchall()}
             
             for col_name, col_def in columns.items():

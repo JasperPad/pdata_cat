@@ -56,6 +56,7 @@ class TestDatabaseInitialization:
                 "base_price", "discounted_price", "discount_text",
                 "is_free", "is_exclusive", "service_branding",
                 "upsell_text", "sku_count", "last_updated",
+                "region",  # v2.0: multi-region support
                 "created_at", "updated_at",
             }
             assert columns == expected
@@ -91,12 +92,13 @@ class TestDatabaseInitialization:
             assert cursor.fetchone() is not None
 
     def test_schema_version_value(self, db_manager):
-        """Schema version should be set to SCHEMA_VERSION (1)."""
+        """Schema version should be set to SCHEMA_VERSION (2)."""
         from ps5_scraper.storage.database import SCHEMA_VERSION
+        assert SCHEMA_VERSION == 2
         db_manager.initialize()
         with db_manager.get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT version FROM schema_version")
+            cursor.execute("SELECT MAX(version) FROM schema_version")
             version = cursor.fetchone()[0]
             assert version == SCHEMA_VERSION
 
@@ -214,8 +216,109 @@ class TestDatabasePath:
         from ps5_scraper.storage.database import DatabaseManager
         db = DatabaseManager(db_path=":memory:")
         db.initialize()
-        
+
         with db.get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='games'")
             assert cursor.fetchone() is not None
+
+
+# ─── v2.0: Multi-region Schema (v2) ──────────────────────────────
+
+
+class TestSchemaV2RegionColumn:
+    """Test that Schema v2 includes the region column."""
+
+    def test_games_table_has_region_column(self, db_manager):
+        """Games table should have 'region' column with default 'hk'."""
+        db_manager.initialize()
+        with db_manager.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("PRAGMA table_info(games)")
+            columns = {row[1]: row[2] for row in cursor.fetchall()}  # name -> type
+
+            assert "region" in columns
+            # Should be TEXT type
+            assert "TEXT" in columns["region"].upper()
+
+    def test_region_index_exists(self, db_manager):
+        """Should have index on games(region) for efficient filtering."""
+        db_manager.initialize()
+        with db_manager.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT name FROM sqlite_master WHERE type='index' "
+                "AND name='idx_games_region'"
+            )
+            result = cursor.fetchone()
+            assert result is not None
+
+    def test_schema_version_is_2(self, db_manager):
+        """Schema version should be 2 after v2.0 upgrade."""
+        from ps5_scraper.storage.database import SCHEMA_VERSION
+        assert SCHEMA_VERSION == 2
+        db_manager.initialize()
+        with db_manager.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT MAX(version) FROM schema_version")
+            version = cursor.fetchone()[0]
+            assert version == 2
+
+    def test_migration_from_v1_adds_region(self, tmp_path):
+        """Migrating an existing v1 DB should add the region column."""
+        import shutil
+        from ps5_scraper.storage.database import DatabaseManager
+
+        # Step 1: Create a v1-style database manually
+        v1_db_path = str(tmp_path / "v1.db")
+        conn = sqlite3.connect(v1_db_path)
+        cursor = conn.cursor()
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS games (
+                id TEXT PRIMARY KEY,
+                name TEXT NOT NULL,
+                platforms TEXT DEFAULT '[]',
+                last_updated INTEGER DEFAULT 0,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        """)
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS schema_version (
+                version INTEGER PRIMARY KEY,
+                applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        """)
+        cursor.execute("INSERT INTO schema_version (version) VALUES (1)")
+        cursor.execute("INSERT INTO games (id, name) VALUES ('test-001', 'Old Game')")
+        conn.commit()
+        conn.close()
+
+        # Step 2: Initialize with DatabaseManager (should migrate)
+        db = DatabaseManager(db_path=v1_db_path)
+        db.initialize()
+
+        # Verify migration happened
+        with db.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("PRAGMA table_info(games)")
+            columns = {row[1] for row in cursor.fetchall()}
+            assert "region" in columns
+
+            # Old data should still be there
+            cursor.execute("SELECT name FROM games WHERE id=?", ("test-001",))
+            assert cursor.fetchone()[0] == "Old Game"
+
+    def test_region_default_value_is_hk(self, db_manager):
+        """New rows should default region to 'HK' if not specified."""
+        db_manager.initialize()
+        with db_manager.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO games (id, name) VALUES (?, ?)",
+                ("auto-region-test", "Auto Region"),
+            )
+            cursor.execute("SELECT region FROM games WHERE id=?", ("auto-region-test",))
+            region = cursor.fetchone()[0]
+            # Default should be HK (from column DEFAULT)
+            assert region == "HK"

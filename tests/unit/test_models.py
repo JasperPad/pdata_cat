@@ -178,6 +178,40 @@ class TestGame:
         with pytest.raises(ValidationError):
             Game(id="test-id")
 
+    # ─── v2.0: Multi-region support ──────────────────────────────
+
+    def test_region_default_is_hk(self):
+        """region defaults to 'HK' for backward compatibility."""
+        game = Game(id="test-id", name="Test")
+        assert game.region == "HK"
+
+    def test_region_can_be_set(self):
+        """region can be explicitly set to any code (UPPERCASE)."""
+        game = Game(id="test-id", name="Test", region="US")
+        assert game.region == "US"
+        game2 = Game(id="test-id-2", name="Test 2", region="JP")
+        assert game2.region == "JP"
+
+    def test_region_in_model_dump(self):
+        """region appears in serialized output."""
+        game = Game(id="test-id", name="Test", region="TW")
+        d = game.model_dump()
+        assert d["region"] == "TW"
+
+    def test_region_backward_compatible(self):
+        """Existing code creating Game without region still works (defaults to HK)."""
+        # This simulates v1.0 code that doesn't know about 'region'
+        game = Game(
+            id="HP9000-PPSA13198_00-STELLARBLADECE00",
+            name="劍星",
+            platforms=["PS5"],
+            price=GamePrice(base_price="HK$708.00"),
+            images=[GameImage(role="MASTER", type="IMAGE", url="https://img.jpg")],
+        )
+        assert game.region == "HK"  # Auto-default
+        assert game.name == "劍星"
+        assert len(game.images) == 1
+
 
 class TestCategoryResponse:
     """Test CategoryResponse model."""

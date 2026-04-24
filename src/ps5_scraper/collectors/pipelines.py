@@ -42,6 +42,7 @@ class CollectionPipeline:
         category_key: str = "ps5_games",
         *,
         full_mode: bool = False,
+        region: str = "HK",
     ) -> dict[str, Any]:
         """Run full collection for a category with checkpoint/resume support.
 
@@ -56,6 +57,7 @@ class CollectionPipeline:
         Args:
             category_key: Category key from settings.category_ids.
             full_mode: If True, ignore saved progress and do full re-collection.
+            region: PS Store region code (e.g., 'HK', 'US', 'JP'). Defaults to 'HK'.
 
         Returns:
             Dict with:
@@ -85,22 +87,26 @@ class CollectionPipeline:
 
         repo = GameRepository(db)
         tracker = self._get_progress_tracker(db)
-        client = self._get_psstore_client()
-        collector = self._get_collector(client, repo)
+
+        # Progress key includes region to allow independent tracking per region
+        progress_key = f"{category_key}_{region}"
+
+        client = self._get_psstore_client(region)
+        collector = self._get_collector(client, repo, region=region)
 
         # Handle full mode: clear progress first
         if full_mode:
-            logger.info("Full mode: clearing progress for %s", category_key)
-            tracker.clear_progress(category_key)
+            logger.info("Full mode: clearing progress for %s", progress_key)
+            tracker.clear_progress(progress_key)
 
         # Load saved progress for resume
-        saved_progress = tracker.load_progress(category_key)
+        saved_progress = tracker.load_progress(progress_key)
         start_offset = 0
         if saved_progress and not full_mode:
             start_offset = saved_progress["offset"]
             logger.info(
                 "Resuming %s from offset %d / %d",
-                category_key, start_offset, saved_progress["total_count"],
+                progress_key, start_offset, saved_progress["total_count"],
             )
 
         # Execute collection
@@ -123,7 +129,7 @@ class CollectionPipeline:
         # Use fetched count as new offset (we've processed up to this point)
         final_offset = start_offset + stats["total_fetched"]
         tracker.save_progress(
-            category_id=category_key,
+            category_id=progress_key,
             offset=final_offset,
             total_count=stats.get("total_count", final_offset) or final_offset,
         )
@@ -206,20 +212,124 @@ class CollectionPipeline:
         """Create a ProgressTracker."""
         return ProgressTracker(db)
 
-    def _get_psstore_client(self) -> PSStoreClient:
-        """Create a PSStoreClient from settings."""
-        return self.config.get_psstore_client()
+    def _get_psstore_client(self, region: str = "HK") -> PSStoreClient:
+        """Create a PSStoreClient from settings.
+
+        Args:
+            region: PS Store region code for locale/currency configuration.
+        """
+        return self.config.get_psstore_client(region)
 
     def _get_collector(
         self,
         client: PSStoreClient,
         repo: Any,  # GameRepository
+        *,
+        region: str = "HK",
     ) -> ConcurrentCollector:
-        """Create a ConcurrentCollector."""
+        """Create a ConcurrentCollector.
+
+        Args:
+            client: Configured PS Store API client.
+            repo: Game repository for storage.
+            region: Region code to pass through to parser/collector.
+        """
         return ConcurrentCollector(
             client=client,
             repo=repo,
             max_workers=self.config.max_workers,
             semaphore_limit=self.config.semaphore_limit,
             page_size=self.config.page_size,
+            region=region,
         )
+
+    async def run_multi_region_collection(
+        self,
+        regions: list[str],
+        category_key: str = "ps5_games",
+        *,
+        full_mode: bool = False,
+    ) -> dict[str, Any]:
+        """Run collection across multiple PS Store regions sequentially.
+
+        For each region in the list, calls run_full_collection with that region.
+        Aggregates results from all regions into a combined report.
+
+        Args:
+            regions: List of region codes (e.g., ['HK', 'US', 'JP']).
+            category_key: Category key from settings.category_ids.
+            full_mode: If True, clear progress and re-collect all regions.
+
+        Returns:
+            Dict with:
+            - regions_collected: Number of regions processed.
+            - total_fetched/stored/images/errors: Aggregated stats.
+            - per_region_results: List of per-region result dicts (with 'region' field).
+            - success: True if ALL regions succeeded without errors.
+            - duration_seconds: Total wall-clock time.
+        """
+        start_time = time.monotonic()
+
+        # Guard: empty regions list
+        if not regions:
+            logger.warning("run_multi_region_collection called with empty regions list")
+            return {
+                "category": category_key,
+                "regions_collected": 0,
+                "total_fetched": 0,
+                "total_stored": 0,
+                "total_images": 0,
+                "errors": ["Empty regions list provided"],
+                "per_region_results": [],
+                "success": False,
+                "duration_seconds": 0.0,
+            }
+
+        per_region_results: list[dict[str, Any]] = []
+        aggregated = {
+            "total_fetched": 0,
+            "total_stored": 0,
+            "total_images": 0,
+            "errors": [],
+        }
+
+        logger.info("Starting multi-region collection for %d regions: %s", len(regions), regions)
+
+        for region_code in regions:
+            logger.info("Collecting region %s...", region_code)
+            region_result = await self.run_full_collection(
+                category_key,
+                full_mode=full_mode,
+                region=region_code,
+            )
+            region_result["region"] = region_code
+            per_region_results.append(region_result)
+
+            # Aggregate stats
+            aggregated["total_fetched"] += region_result.get("total_fetched", 0)
+            aggregated["total_stored"] += region_result.get("total_stored", 0)
+            aggregated["total_images"] += region_result.get("total_images", 0)
+            if region_result.get("errors"):
+                aggregated["errors"].extend(region_result["errors"])
+
+        duration = time.monotonic() - start_time
+        all_success = all(r.get("success", False) for r in per_region_results)
+
+        result = {
+            "category": category_key,
+            "regions_collected": len(regions),
+            **aggregated,
+            "per_region_results": per_region_results,
+            "success": all_success and len(regions) > 0,
+            "duration_seconds": round(duration, 2),
+        }
+
+        logger.info(
+            "Multi-region collection complete: %d regions, %d games, %d images, %.1fs",
+            len(regions),
+            result["total_stored"],
+            result["total_images"],
+            duration,
+        )
+
+        return result

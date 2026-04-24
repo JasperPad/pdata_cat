@@ -1,8 +1,8 @@
-# PS5 HK Scraper 🎮
+# PS5 Store Scraper 🎮
 
-> PlayStation Store 港服图片链接采集工具 — 提取 PS5 游戏的完整图片资源链接（封面、截图、横幅、Logo 等）
+> PlayStation Store **多区域**图片链接采集工具 — 提取 PS5 游戏的完整图片资源链接（封面、截图、横幅、Logo 等），支持 21 个 PS Store 区域
 
-**版本**: v1.0.0 | **测试**: ✅ 188/188 通过 | **License**: MIT
+**版本**: v2.0.0 | **测试**: ✅ 232/232 通过 | **License**: MIT
 
 ---
 
@@ -10,33 +10,35 @@
 
 | 特性 | 说明 |
 |------|------|
+| 🌍 **21 区域支持** | HK/US/JP/UK/DE/KR/TW/BR/CN 等 21 个 PS Store 区域 |
 | 🖼️ **9 种图片角色** | MASTER / GAMEHUB_COVER_ART / BANNER×2 / LOGO / SCREENSHOT×N / EDITION_KEY_ART / BACKGROUND / PREVIEW |
-| 💰 **价格数据** | 原价、折扣价、折扣百分比、PS Plus 会员加折 |
-| 🗄️ **SQLite 持久化** | WAL 模式 + 自动 Schema 迁移 + 级联删除 |
+| 💰 **价格数据** | 原价、折扣价、折扣百分比、PS Plus 会员加折，自动适配各区域货币 |
+| 🗄️ **SQLite 持久化** | WAL 模式 + Schema v2 自动迁移 + region 分区索引 |
 | ⚡ **并发采集** | ThreadPoolExecutor + Semaphore 限速控制 |
 | 🔄 **断点续采** | SQLite 进度跟踪，中断后可从断点恢复 |
-| 🛠️ **CLI 工具** | collect / export / status / images 四个命令 |
-| 🔒 **安全审计通过** | 0 安全问题 + 独立评审 23 项全修复 |
+| 🛠️ **CLI 工具** | collect / export / status / images 四命令 + `--region` / `--all-regions` 参数 |
+| 🔒 **安全审计通过** | 0 安全问题 + 独立评审 14 项全修复 |
 
 ---
 
-## 🏗️ 架构图
+## 🏗️ 架构图 (v2.0 多区域)
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                        CLI (Typer)                          │
-│   collect │ export │ status │ images                         │
+│   collect [--region XX] │ export │ status │ images          │
+│   --all-regions                                                 │
 └───────────┬───────────────┬───────────┬─────────────────────┘
             │               │           │
     ┌───────▼───────┐       │     ┌─────▼──────┐
     │  Pipeline     │       │     │ Repository │
-    │  (编排层)      │       │     │  (CRUD)    │
+    │  (多区域编排)   │       │     │  (CRUD+区域) │
     └───────┬───────┘       │     └─────┬──────┘
             │               │           │
     ┌───────▼───────┐       │     ┌─────▼──────┐
     │  Concurrent   │       │     │ Database   │
     │  Collector    │───────┼────▶│ Manager    │
-    │  (并发采集)    │       │     │  (WAL)     │
+    │  (并发采集)    │       │     │  (Schema v2)│
     └───────┬───────┘       │     └────────────┘
             │               │
     ┌───────▼───────┐       │
@@ -49,6 +51,8 @@
     │        PS Store Client     │
     │  BaseAPIClient (限速+重试)  │
     │  PSStoreClient (GraphQL)   │
+    │  ├─ locale: {region.locale}│
+    │  └─ currency: {region.currency}│
     │  PSStoreParser (解析+提取)  │
     └───────────┬────────────────┘
                 │
@@ -82,12 +86,45 @@ pip install -e .
 # 1️⃣ 查看当前状态（首次使用会自动初始化数据库）
 ps5-scraper status
 
-# 2️⃣ 开始采集所有 PS5 港服游戏图片链接
+# 2️⃣ 采集指定区域（默认港服）
 ps5-scraper collect --workers 4
 
 # 3️⃣ 导出为 JSON
 ps5-scraper export --output games.json
 ```
+
+### 多区域采集
+
+```bash
+# 采集美服
+ps5-scraper collect --region US
+
+# 采集日服
+ps5-scraper collect --region JP
+
+# 采集所有启用区域
+ps5-scraper collect --all-regions
+
+# 全量重采所有区域
+ps5-scraper collect --all-regions --full
+```
+
+### 支持的区域代码
+
+| 代码 | 区域 | 货币 | 游戏数(约) |
+|------|------|------|-----------|
+| US | 🇺🇸 美服 | USD | ~9,149 |
+| JP | 🇯🇵 日服 | JPY | ~7,370 |
+| HK | 🇭🇰 港服 | HKD | ~7,048 |
+| UK | 🇬🇧 英服 | GBP | ~7,200 |
+| DE | 🇩🇪 德服 | EUR | ~7,150 |
+| KR | 🇰🇷 韩服 | KRW | ~6,481 |
+| TW | 🇹🇼 台服 | TWD | ~6,108 |
+| BR | 🇧🇷 巴西服 | BRL | ~4,500 |
+| CN | 🇨🇳 国服 | CNY | ~35 |
+| ... | 共 21 个区域 | — | — |
+
+> 完整列表见 `src/ps5_scraper/models/region.py` 中 `REGIONS` 字典。
 
 ### 查看某游戏的图片
 
@@ -111,7 +148,7 @@ ps5-scraper images "God of War Ragnarök"
 | `collector.workers` | `PS5_WORKERS` | int | `4` | 并发线程数 |
 | `collector.page_size` | `PS5_PAGE_SIZE` | int | `20` | 每页游戏数量 |
 | `storage.db_path` | `PS5_DB_PATH` | str | `data/games.db` | SQLite 数据库路径 |
-| `locale` | `PS5_LOCALE` | str | `zh-hant-hk` | 地区语言代码 |
+| `locale` | `PS5_LOCALE` | str | `zh-hant-hk` | 地区语言代码（默认港服） |
 
 ### config.yaml 示例
 
@@ -149,15 +186,24 @@ ps5-scraper collect [OPTIONS]
 | `--page-size` | `-p` | int | `20` | 每页数量 |
 | `--resume` | `-r` | flag | `false` | 从上次中断处继续 |
 | `--dry-run` | flag | `false` | 仅显示计划不执行 |
+| `--full` | flag | `false` | 全量重采（忽略进度） |
+| `--region` | str | `HK` | 指定区域代码（大小写不敏感） |
+| `--all-regions` | flag | `false` | 采集所有启用区域 |
 
 **示例：**
 
 ```bash
-# 标准采集（4 线程）
+# 标准采集港服（4 线程）
 ps5-scraper collect
 
-# 高并发采集
-ps5-scraper collect --workers 8
+# 采集美服
+ps5-scraper collect --region US
+
+# 采集日服全量
+ps5-scraper collect --region JP --full
+
+# 多区域高并发采集
+ps5-scraper collect --all-regions --workers 4
 
 # 断点续采
 ps5-scraper collect --resume
@@ -177,16 +223,7 @@ ps5-scraper export [OPTIONS]
 | `--output` | `-o` | str | `games.json` | 输出文件路径 |
 | `--format` | `-f` | str | `json` | 导出格式 (json/csv) |
 | `--with-images` | flag | `false` | 包含图片链接详情 |
-
-**示例：**
-
-```bash
-# 导出为 JSON
-ps5-scraper export -o my_games.json
-
-# 导出含图片的完整数据
-ps5-scraper export --with-images
-```
+| `--region` | str | _(全部)_ | 按区域过滤导出 |
 
 ### `status` — 查看状态
 
@@ -200,14 +237,12 @@ ps5-scraper status [OPTIONS]
 
 **输出示例：**
 ```
-📊 Collection Status
+📊 PS5 数据库状态
 ═══════════════════════════════════════
-  Total Games:    7,047
-  Collected:      3,252 (46.2%)
-  Remaining:      3,795
-  Last Page:      163
-  Images Total:   48,934
-  DB Size:        12.4 MB
+  Total Games:    15,234
+  Regions:        3 (HK, US, JP)
+  Images Total:   229,456
+  DB Size:        45.2 MB
 ```
 
 ### `images` — 查看游戏图片
@@ -222,56 +257,53 @@ ps5-scraper images GAME_NAME [OPTIONS]
 | `--role` | `-r` | str | `all` | 过滤图片角色 |
 | `--json` | flag | `false` | JSON 格式输出 |
 
-**示例：**
-
-```bash
-# 查看 God of War 的所有图片
-ps5-scraper images "God of War"
-
-# 只看封面图
-ps5-scraper images "Spider-Man" --role MASTER
-
-# JSON 输出
-ps5-scraper images "Horizon" --json
-```
-
 ---
 
-## 📂 项目结构
+## 📂 项目结构 (v2.0)
 
 ```
 ps5-hk-scraper/
-├── docs/                       # 📝 文档
-│   ├── README.md              # 本文件 — 用户指南
-│   ├── api.md                 # 开发者参考
-│   ├── CHANGELOG.md           # 变更日志
-│   └── WORKLOG.md             # 工作日志
-├── src/ps5_scraper/            # 🔧 源码
-│   ├── __init__.py            # 版本号 v1.0.0
-│   ├── cli.py                 # Typer CLI 入口
-│   ├── config.py              # Pydantic Settings
-│   ├── api/                   # API 层
-│   │   ├── base.py            # BaseAPIClient
-│   │   ├── psstore_client.py  # PS Store 客户端
-│   │   └── psstore_parser.py  # 响应解析器 ⭐
-│   ├── models/                # 数据模型
-│   │   └── game.py            # Pydantic v2 模型
-│   ├── storage/               # 存储层
-│   │   ├── database.py        # DatabaseManager
-│   │   └── repositories.py    # GameRepository
-│   └── collectors/            # 采集层
-│       ├── concurrent.py      # ConcurrentCollector
-│       ├── progress.py        # ProgressTracker
-│       └── pipelines.py       # CollectionPipeline
-├── tests/                      # 🧪 测试
-│   ├── test_models.py
-│   ├── test_api/
-│   ├── test_storage/
-│   ├── test_collectors/
-│   └── conftest.py
-├── config.yaml                 # 配置文件
-├── pyproject.toml              # 项目元数据
-└── README.md                   # 项目首页
+├── docs/                              # 📝 文档
+│   ├── README.md                      # 本文件 — 用户指南
+│   ├── api.md                         # 开发者参考
+│   ├── CHANGELOG.md                   # 变更日志
+│   ├── WORKLOG.md                     # 工作日志
+│   ├── MULTI_REGION_RESEARCH_REPORT.md # 多区域调研报告
+│   └── V2_MULTI_REGION_ARCHITECTURE.md # 架构设计文档
+├── src/ps5_scraper/                    # 🔧 源码
+│   ├── __init__.py                   # 版本号
+│   ├── cli.py                        # Typer CLI 入口 (多区域参数)
+│   ├── config.py                     # Pydantic Settings (多区域工厂方法)
+│   ├── models/                       # 数据模型
+│   │   ├── __init__.py              # 统一导出
+│   │   ├── game.py                  # Game/GamePrice/GameImage 模型 (+region)
+│   │   └── region.py               # ⭐ Region 模型 + 21 区域定义
+│   ├── api/                          # API 层
+│   │   ├── base.py                  # BaseAPIClient
+│   │   ├── psstore_client.py        # PS Store 客户端 (+currency参数)
+│   │   └── psstore_parser.py        # 响应解析器 (+region注入)
+│   ├── storage/                      # 存储层
+│   │   ├── database.py              # DatabaseManager (Schema v2)
+│   │   └── repositories.py          # GameRepository (region分区CRUD)
+│   └── collectors/                   # 采集层
+│       ├── concurrent.py             # ConcurrentCollector (region传递)
+│       ├── progress.py              # ProgressTracker
+│       └── pipelines.py             # CollectionPipeline (多区域编排)
+├── tests/                             # 🧪 测试 (232 个用例)
+│   ├── unit/
+│   │   ├── test_models.py           # Game 模型测试 (+region)
+│   │   ├── test_region_model.py     # ⭐ Region 模型测试 (21 用例)
+│   │   ├── test_config.py           # Config 测试 (+多区域工厂)
+│   │   ├── test_psstore_client.py   # Client 测试 (+currency)
+│   │   ├── test_database.py         # DB 测试 (Schema v2 迁移)
+│   │   ├── test_repositories.py     # Repo 测试 (region CRUD)
+│   │   ├── test_psstore_parser.py   # Parser 测试 (+region注入)
+│   │   ├── test_concurrent_collector.py # Collector 测试 (region传递)
+│   │   ├── test_pipeline.py         # Pipeline 测试 (多区域编排)
+│   │   └── test_cli.py              # CLI 测试 (--region/--all-regions)
+├── config.yaml                        # 配置文件
+├── pyproject.toml                     # 项目元数据
+└── README.md                          # 项目首页
 ```
 
 ---
@@ -286,9 +318,9 @@ pytest
 pytest --cov=ps5_scraper --cov-report=term-missing
 
 # 运行特定模块测试
-pytest tests/test_models.py -v
+pytest tests/unit/test_region_model.py -v
 
-# 当前结果: 188 passed, 0 failed ✅
+# 当前结果: 232 passed, 0 failed ✅
 ```
 
 ---
@@ -309,6 +341,7 @@ pytest tests/test_models.py -v
 - 内置 **Rate Limiter**: 60 RPM（每分钟 60 次请求）默认限制
 - 自动 **Exponential Backoff**: 重试间隔递增避免触发封禁
 - 请勿擅自提高 `rate_limit_rpm`，可能导致 IP 被 Sony 封禁
+- **多区域采集时注意总 QPS 控制**
 
 ### 数据安全
 

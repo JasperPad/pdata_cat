@@ -228,3 +228,110 @@ class TestLocaleConfiguration:
             await custom_client.fetch_category_games("cat-id", 0, 10)
 
             assert captured_headers.get("x-psn-store-locale-override") == "en-us"
+
+
+# ─── v2.0: Multi-region currency support ────────────────────────
+
+
+class TestCurrencyConfiguration:
+    """Test currency parameter for multi-region support."""
+
+    def test_default_currency_is_hkd(self):
+        """Default currency should be HKD for backward compatibility."""
+        c = PSStoreClient()
+        assert c.currency == "HKD"
+
+    def test_custom_currency(self):
+        """Currency can be set via constructor."""
+        c = PSStoreClient(currency="USD")
+        assert c.currency == "USD"
+
+    @pytest.mark.asyncio
+    async def test_currency_in_graphql_body(self):
+        """Currency should appear in GraphQL variables."""
+        us_client = PSStoreClient(locale="en-us", currency="USD")
+
+        with respx.mock as mock:
+            resp_body = {
+                "data": {
+                    "categoryGridRetrieve": {
+                        "pageInfo": {"totalCount": 0},
+                        "products": [],
+                    }
+                }
+            }
+
+            captured_body = {}
+
+            def side_effect(request):
+                captured_body["data"] = json.loads(request.content)
+                return httpx.Response(200, json=resp_body)
+
+            mock.post("https://web.np.playstation.com/api/graphql/v1/op").mock(
+                side_effect=side_effect
+            )
+
+            await us_client.fetch_category_games("cat-id", 0, 10)
+
+            body = captured_body["data"]
+            assert body["variables"]["currency"] == "USD"
+
+    @pytest.mark.asyncio
+    async def test_jpy_currency_in_graphql_body(self):
+        """JPY should work correctly for Japan region."""
+        jp_client = PSStoreClient(locale="ja-jp", currency="JPY")
+
+        with respx.mock as mock:
+            resp_body = {
+                "data": {
+                    "categoryGridRetrieve": {
+                        "pageInfo": {"totalCount": 0},
+                        "products": [],
+                    }
+                }
+            }
+
+            captured_body = {}
+
+            def side_effect(request):
+                captured_body["data"] = json.loads(request.content)
+                return httpx.Response(200, json=resp_body)
+
+            mock.post("https://web.np.playstation.com/api/graphql/v1/op").mock(
+                side_effect=side_effect
+            )
+
+            await jp_client.fetch_category_games("cat-id", 0, 5)
+
+            body = captured_body["data"]
+            assert body["variables"]["currency"] == "JPY"
+
+    @pytest.mark.asyncio
+    async def test_backward_compat_no_currency_param(self):
+        """Creating client without currency param still works (defaults HKD)."""
+        legacy_client = PSStoreClient(locale="zh-hant-hk")
+
+        with respx.mock as mock:
+            resp_body = {
+                "data": {
+                    "categoryGridRetrieve": {
+                        "pageInfo": {"totalCount": 0},
+                        "products": [],
+                    }
+                }
+            }
+
+            captured_body = {}
+
+            def side_effect(request):
+                captured_body["data"] = json.loads(request.content)
+                return httpx.Response(200, json=resp_body)
+
+            mock.post("https://web.np.playstation.com/api/graphql/v1/op").mock(
+                side_effect=side_effect
+            )
+
+            await legacy_client.fetch_category_games("cat-id", 0, 24)
+
+            body = captured_body["data"]
+            assert body["variables"]["currency"] == "HKD"

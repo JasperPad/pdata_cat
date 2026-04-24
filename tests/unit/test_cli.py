@@ -145,7 +145,7 @@ class TestCollectCommand:
         mock_settings_cls.return_value = mock_settings
 
         import asyncio
-        async def _fake_run(category_key, *, full_mode=False):
+        async def _fake_run(category_key, *, full_mode=False, region="HK"):
             return {
                 "category": "ps5_games",
                 "success": True,
@@ -173,7 +173,7 @@ class TestCollectCommand:
         mock_settings_cls.return_value = mock_settings
 
         import asyncio
-        async def _fake_run_cat(category_key, *, full_mode=False):
+        async def _fake_run_cat(category_key, *, full_mode=False, region="HK"):
             return {
                 "category": "deals",
                 "success": True,
@@ -200,7 +200,7 @@ class TestCollectCommand:
         mock_settings_cls.return_value = mock_settings
 
         import asyncio
-        async def _fake_run_full(category_key, *, full_mode=False):
+        async def _fake_run_full(category_key, *, full_mode=False, region="HK"):
             return {
                 "category": "ps5_games",
                 "success": True,
@@ -228,7 +228,7 @@ class TestCollectCommand:
         mock_settings_cls.return_value = mock_settings
 
         import asyncio
-        async def _fake_run_err(category_key, *, full_mode=False):
+        async def _fake_run_err(category_key, *, full_mode=False, region="HK"):
             return {
                 "category": "ps5_games",
                 "success": False,
@@ -536,3 +536,133 @@ class TestImagesCommand:
         assert result.exit_code == 0
         # Should show all games
         assert "Goyo" in result.output or "Horizon" in result.output
+
+
+class TestCollectRegionOptions:
+    """Test --region and --all-regions options on collect command."""
+
+    @patch("ps5_scraper.cli.Settings")
+    @patch("ps5_scraper.cli.CollectionPipeline")
+    def test_collect_with_region_option(self, mock_pipeline_cls, mock_settings_cls, mock_settings):
+        """collect --region US should pass region='US' to pipeline."""
+        mock_settings_cls.return_value = mock_settings
+
+        import asyncio
+        async def _fake_run(category_key, *, full_mode=False, region="HK"):
+            return {
+                "category": "ps5_games",
+                "success": True,
+                "total_fetched": 30,
+                "total_stored": 30,
+                "total_images": 60,
+                "errors": [],
+                "duration_seconds": 4.0,
+            }
+
+        mock_pipeline = MagicMock()
+        mock_pipeline.run_full_collection = _fake_run
+        mock_pipeline_cls.return_value = mock_pipeline
+
+        result = runner.invoke(app, ["collect", "--region", "US"])
+
+        assert result.exit_code == 0
+        assert mock_pipeline_cls.called
+
+    @patch("ps5_scraper.cli.Settings")
+    @patch("ps5_scraper.cli.CollectionPipeline")
+    def test_collect_default_region_is_hk(self, mock_pipeline_cls, mock_settings_cls, mock_settings):
+        """collect without --region should default to HK."""
+        mock_settings_cls.return_value = mock_settings
+
+        import asyncio
+        async def _fake_run(category_key, *, full_mode=False, region="HK"):
+            return {
+                "category": "ps5_games",
+                "success": True,
+                "total_fetched": 24,
+                "total_stored": 24,
+                "total_images": 48,
+                "errors": [],
+                "duration_seconds": 3.0,
+            }
+
+        mock_pipeline = MagicMock()
+        mock_pipeline.run_full_collection = _fake_run
+        mock_pipeline_cls.return_value = mock_pipeline
+
+        result = runner.invoke(app, ["collect"])
+
+        assert result.exit_code == 0
+        assert mock_pipeline_cls.called
+
+    @patch("ps5_scraper.cli.Settings")
+    @patch("ps5_scraper.cli.CollectionPipeline")
+    def test_collect_all_regions_calls_multi(self, mock_pipeline_cls, mock_settings_cls, mock_settings):
+        """collect --all-regions should call run_multi_region_collection."""
+        mock_settings_cls.return_value = mock_settings
+
+        import asyncio
+        async def _fake_multi(regions, category_key="ps5_games", *, full_mode=False):
+            return {
+                "category": "ps5_games",
+                "regions_collected": len(regions),
+                "success": True,
+                "total_fetched": 100,
+                "total_stored": 100,
+                "total_images": 200,
+                "errors": [],
+                "per_region_results": [],
+                "duration_seconds": 10.0,
+            }
+
+        mock_pipeline = MagicMock()
+        mock_pipeline.run_multi_region_collection = _fake_multi
+        mock_pipeline_cls.return_value = mock_pipeline
+
+        result = runner.invoke(app, ["collect", "--all-regions"])
+
+        assert result.exit_code == 0
+        # Verify multi-region was called (not single-region)
+        assert hasattr(mock_pipeline, "run_multi_region_collection")
+
+    @patch("ps5_scraper.cli.Settings")
+    @patch("ps5_scraper.cli.CollectionPipeline")
+    def test_collect_all_regions_shows_region_count(self, mock_pipeline_cls, mock_settings_cls, mock_settings):
+        """collect --all-regions output should mention regions collected."""
+        mock_settings_cls.return_value = mock_settings
+
+        import asyncio
+        async def _fake_multi(regions, category_key="ps5_games", *, full_mode=False):
+            return {
+                "category": "ps5_games",
+                "regions_collected": 21,
+                "success": True,
+                "total_fetched": 5000,
+                "total_stored": 5000,
+                "total_images": 12000,
+                "errors": [],
+                "per_region_results": [],
+                "duration_seconds": 120.0,
+            }
+
+        mock_pipeline = MagicMock()
+        mock_pipeline.run_multi_region_collection = _fake_multi
+        mock_pipeline_cls.return_value = mock_pipeline
+
+        result = runner.invoke(app, ["collect", "--all-regions"])
+
+        assert result.exit_code == 0
+        assert "5000" in result.output or "5000" in str(result.output)
+
+    def test_collect_help_shows_region_option(self):
+        """collect --help should show --region option."""
+        result = runner.invoke(app, ["collect", "--help"])
+        assert result.exit_code == 0
+        assert "--region" in result.output
+        assert "--all-regions" in result.output
+
+    def test_collect_invalid_region_shows_error(self):
+        """collect --region INVALID should exit with error."""
+        result = runner.invoke(app, ["collect", "--region", "INVALID_REGION"])
+        assert result.exit_code == 1
+        assert "invalid" in result.output.lower() or "无效" in result.output

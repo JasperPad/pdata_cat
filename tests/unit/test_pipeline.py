@@ -81,8 +81,8 @@ class TestRunFullCollection:
 
         await pipeline.run_full_collection("ps5_games")
 
-        # Verify that progress was loaded before collection
-        mock_tracker.load_progress.assert_called_once_with("ps5_games")
+        # Verify that progress was loaded before collection (with default HK suffix)
+        mock_tracker.load_progress.assert_called_once_with("ps5_games_HK")
 
     @pytest.mark.asyncio
     async def test_full_mode_clears_progress_first(self, mock_settings, sample_collection_stats):
@@ -101,8 +101,8 @@ class TestRunFullCollection:
 
         await pipeline.run_full_collection("ps5_games", full_mode=True)
 
-        # Should clear progress first in full mode
-        mock_tracker.clear_progress.assert_called_once_with("ps5_games")
+        # Should clear progress first in full mode (with default HK suffix)
+        mock_tracker.clear_progress.assert_called_once_with("ps5_games_HK")
 
 
 class TestStatisticsReport:
@@ -264,3 +264,170 @@ class TestGetStatus:
 
         status = pipeline.get_status("new_category")
         assert status["has_progress"] is False
+
+
+class TestRegionSupport:
+    """Test that Pipeline passes region through to collector and client."""
+
+    @pytest.mark.asyncio
+    async def test_run_full_passes_region_to_client(self, mock_settings, sample_collection_stats):
+        """run_full_collection should pass region to _get_psstore_client."""
+        pipeline = CollectionPipeline(mock_settings)
+
+        mock_db = MagicMock()
+        mock_tracker = MagicMock()
+        mock_tracker.load_progress.return_value = None
+        mock_collector = MagicMock()
+        mock_collector.collect_category = AsyncMock(return_value=sample_collection_stats)
+
+        pipeline._get_database = MagicMock(return_value=mock_db)
+        pipeline._get_progress_tracker = MagicMock(return_value=mock_tracker)
+        pipeline._get_psstore_client = MagicMock(return_value=MagicMock())
+        pipeline._get_collector = MagicMock(return_value=mock_collector)
+
+        await pipeline.run_full_collection("ps5_games", region="US")
+
+        # Should pass region="US" to client factory
+        pipeline._get_psstore_client.assert_called_once_with("US")
+
+    @pytest.mark.asyncio
+    async def test_run_full_passes_region_to_collector(self, mock_settings, sample_collection_stats):
+        """run_full_collection should pass region to _get_collector."""
+        pipeline = CollectionPipeline(mock_settings)
+
+        mock_client = MagicMock()
+        mock_db = MagicMock()
+        mock_tracker = MagicMock()
+        mock_tracker.load_progress.return_value = None
+        mock_collector = MagicMock()
+        mock_collector.collect_category = AsyncMock(return_value=sample_collection_stats)
+
+        pipeline._get_database = MagicMock(return_value=mock_db)
+        pipeline._get_progress_tracker = MagicMock(return_value=mock_tracker)
+        pipeline._get_psstore_client = MagicMock(return_value=mock_client)
+        pipeline._get_collector = MagicMock(return_value=mock_collector)
+
+        await pipeline.run_full_collection("ps5_games", region="JP")
+
+        # Verify collector was created with region
+        call_kwargs = pipeline._get_collector.call_args
+        assert call_kwargs.kwargs.get("region") == "JP"
+
+    @pytest.mark.asyncio
+    async def test_run_full_default_region_is_hk(self, mock_settings, sample_collection_stats):
+        """Default region should be 'HK' for backward compatibility."""
+        pipeline = CollectionPipeline(mock_settings)
+
+        mock_db = MagicMock()
+        mock_tracker = MagicMock()
+        mock_tracker.load_progress.return_value = None
+        mock_collector = MagicMock()
+        mock_collector.collect_category = AsyncMock(return_value=sample_collection_stats)
+
+        pipeline._get_database = MagicMock(return_value=mock_db)
+        pipeline._get_progress_tracker = MagicMock(return_value=mock_tracker)
+        pipeline._get_psstore_client = MagicMock(return_value=MagicMock())
+        pipeline._get_collector = MagicMock(return_value=mock_collector)
+
+        await pipeline.run_full_collection("ps5_games")
+
+        # Default region should be HK
+        pipeline._get_psstore_client.assert_called_once_with("HK")
+        call_kwargs = pipeline._get_collector.call_args
+        assert call_kwargs.kwargs.get("region") == "HK"
+
+    @pytest.mark.asyncio
+    async def test_progress_key_includes_region(self, mock_settings, sample_collection_stats):
+        """Progress tracker key should include region suffix."""
+        pipeline = CollectionPipeline(mock_settings)
+
+        mock_db = MagicMock()
+        mock_tracker = MagicMock()
+        mock_tracker.load_progress.return_value = None
+        mock_collector = MagicMock()
+        mock_collector.collect_category = AsyncMock(return_value=sample_collection_stats)
+
+        pipeline._get_database = MagicMock(return_value=mock_db)
+        pipeline._get_progress_tracker = MagicMock(return_value=mock_tracker)
+        pipeline._get_psstore_client = MagicMock(return_value=MagicMock())
+        pipeline._get_collector = MagicMock(return_value=mock_collector)
+
+        await pipeline.run_full_collection("ps5_games", region="TW")
+
+        # Progress load/save should use region-prefixed key
+        mock_tracker.load_progress.assert_called_once_with("ps5_games_TW")
+
+
+class TestMultiRegionCollection:
+    """Test multi-region collection orchestration."""
+
+    @pytest.mark.asyncio
+    async def test_collects_multiple_regions_sequentially(self, mock_settings):
+        """run_multi_region_collection should loop over each region."""
+        pipeline = CollectionPipeline(mock_settings)
+
+        stats_hk = {"total_fetched": 10, "total_stored": 10, "total_images": 20, "errors": []}
+        stats_us = {"total_fetched": 15, "total_stored": 15, "total_images": 30, "errors": []}
+
+        original_run = AsyncMock(side_effect=[
+            {**stats_hk, "category": "ps5_games", "success": True, "duration_seconds": 1.0},
+            {**stats_us, "category": "ps5_games", "success": True, "duration_seconds": 1.5},
+        ])
+
+        with patch.object(pipeline, "run_full_collection", original_run):
+            result = await pipeline.run_multi_region_collection(
+                regions=["HK", "US"],
+                category_key="ps5_games",
+            )
+
+        assert result["success"] is True
+        assert result["regions_collected"] == 2
+        assert result["total_stored"] == 25  # 10 + 15
+        assert result["total_images"] == 50  # 20 + 30
+        # Should have called run_full_collection twice
+        assert original_run.call_count == 2
+
+    @pytest.mark.asyncio
+    async def test_multi_region_aggregates_errors(self, mock_settings):
+        """Multi-region should aggregate errors from all regions."""
+        pipeline = CollectionPipeline(mock_settings)
+
+        stats_ok = {
+            "total_fetched": 10, "total_stored": 10,
+            "total_images": 20, "errors": [],
+            "category": "ps5_games", "success": True, "duration_seconds": 1.0,
+        }
+        stats_err = {
+            "total_fetched": 5, "total_stored": 3,
+            "total_images": 6, "errors": ["timeout"],
+            "category": "ps5_games", "success": False, "duration_seconds": 2.0,
+        }
+
+        original_run = AsyncMock(side_effect=[stats_ok, stats_err])
+
+        with patch.object(pipeline, "run_full_collection", original_run):
+            result = await pipeline.run_multi_region_collection(
+                regions=["HK", "JP"],
+                category_key="ps5_games",
+            )
+
+        assert result["success"] is False  # JP had error
+        assert result["regions_collected"] == 2
+        assert result["total_stored"] == 13  # 10 + 3
+        assert len(result["per_region_results"]) == 2
+        assert result["per_region_results"][1]["region"] == "JP"
+        assert result["per_region_results"][1]["success"] is False
+
+    @pytest.mark.asyncio
+    async def test_multi_region_empty_list_returns_zero(self, mock_settings):
+        """Empty regions list should return zero-collected result."""
+        pipeline = CollectionPipeline(mock_settings)
+
+        result = await pipeline.run_multi_region_collection(
+            regions=[],
+            category_key="ps5_games",
+        )
+
+        assert result["regions_collected"] == 0
+        assert result["total_stored"] == 0
+        assert result["success"] is False  # Empty regions = no work done

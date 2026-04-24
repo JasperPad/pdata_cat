@@ -15,6 +15,7 @@ import yaml
 from pydantic import BaseModel
 
 from ps5_scraper.api.psstore_client import PSStoreClient
+from ps5_scraper.models.region import get_region as lookup_region
 from ps5_scraper.storage.database import DatabaseManager
 
 logger = logging.getLogger(__name__)
@@ -249,14 +250,33 @@ class Settings(BaseModel):
 
     # ─── Factory methods ─────────────────────────────────────────
 
-    def get_psstore_client(self) -> PSStoreClient:
+    def get_psstore_client(self, region: str | None = None) -> PSStoreClient:
         """Create a PSStoreClient instance configured with these settings.
+
+        Args:
+            region: Optional region code (e.g., "us", "jp", "hk").
+                When provided, uses the region's locale and currency.
+                When omitted, falls back to the locale field from YAML/env.
 
         Returns:
             A fully configured PSStoreClient ready for API calls.
+
+        Raises:
+            ValueError: If the region code is not found in REGIONS.
         """
+        if region is not None:
+            r = lookup_region(region)
+            if r is None:
+                raise ValueError(f"Unknown region code: {region!r}")
+            locale = r.locale
+            currency = r.currency
+        else:
+            locale = self.locale
+            currency = "HKD"  # v2.0: default to HKD when no region specified
+
         return PSStoreClient(
-            locale=self.locale,
+            locale=locale,
+            currency=currency,
             requests_per_minute=self.requests_per_minute,
             timeout=self.timeout,
             max_retries=self.retry_attempts,
