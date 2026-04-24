@@ -1,0 +1,54 @@
+# PS5 港服数据采集器配置
+# ================================
+
+# PlayStation Store API 配置
+api:
+  base_url: "https://web.np.playstation.com/api/graphql/v1/op"
+  locale: "zh-hant-hk"          # 港服繁体中文
+  timeout: 30                    # HTTP 超时（秒）
+  retry_attempts: 3              # 重试次数
+  retry_backoff: 1.0             # 初始退避时间（秒）
+  requests_per_minute: 60        # 每分钟最大请求数
+
+# GraphQL Persisted Query 签名
+hashes:
+  category_grid_retrieve: "4ce7d410a4db2c8b635a48c1dcec375906ff63b19dadd87e073f8fd0c0481d35"
+
+# PS5 分类 ID
+categories:
+  ps5_games: "4cbf39e2-5749-4970-ba81-93a489e4570c"
+  deals: "3f772501-f6f8-49b7-abac-874a88ca4897"
+  free_games: "4dfd67ab-4ed7-40b0-a937-a549aece13d0"
+
+# 分页配置
+pagination:
+  page_size: 24                  # 每页数量（API 最大支持）
+
+# 并发配置
+concurrency:
+  max_workers: 4                 # 最大并发线程数
+  semaphore_limit: 3             # API 信号量限制
+
+# 存储配置
+storage:
+  database_path: "data/ps5_games.db"
+  wal_mode: true                 # SQLite WAL 模式
+
+# 图片链接提取配置（v1.0 核心）
+images:
+  # 要提取的图片角色列表
+  extract_roles:
+    - "MASTER"                   # 首页封面图
+    - "GAMEHUB_COVER_ART"        # 详情页主图
+    - "FOUR_BY_THREE_BANNER"     # 横幅图
+    - "PORTRAIT_BANNER"          # 竖版海报
+    - "LOGO"                     # 游戏标志
+    - "SCREENSHOT"               # 实机截图（可多张）
+    - "EDITION_KEY_ART"          # 版本封面
+    - "BACKGROUND"               # 背景大图
+    - "PREVIEW"                  # 预告视频（type=VIDEO）
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
