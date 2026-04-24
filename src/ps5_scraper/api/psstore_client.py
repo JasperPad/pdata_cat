@@ -84,20 +84,25 @@ class PSStoreClient(BaseAPIClient):
         offset: int,
         size: int,
     ) -> dict[str, Any]:
-        """Build the GraphQL persisted query POST body."""
+        """Build the GraphQL persisted query POST body.
+
+        Variable structure matches the actual PS Store GraphQL schema:
+        - id: Category UUID (top-level)
+        - pageArgs: Nested pagination { offset, size }
+        - currency: Price currency code (HKD for HK store)
+        """
         return {
             "operationName": "categoryGridRetrieve",
             "variables": {
                 "id": category_id,
-                "offset": offset,
-                "size": size,
-                "language": self.locale,
+                "pageArgs": {"offset": offset, "size": size},
+                "currency": "HKD",
             },
             "extensions": {
                 "persistedQuery": {
                     "sha256Hash": CATEGORY_LIST_HASH,
                     "version": 1,
-                }
+                },
             },
         }
 

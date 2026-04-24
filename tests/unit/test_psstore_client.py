@@ -58,8 +58,10 @@ class TestGraphQLRequestBuild:
             body = captured_request["body"]
             assert body["operationName"] == "categoryGridRetrieve"
             assert body["variables"]["id"] == category_id
-            assert body["variables"]["offset"] == 0
-            assert body["variables"]["size"] == 24
+            # Variables use nested pageArgs structure (actual PS Store schema)
+            assert body["variables"]["pageArgs"]["offset"] == 0
+            assert body["variables"]["pageArgs"]["size"] == 24
+            assert body["variables"]["currency"] == "HKD"
             assert body["extensions"]["persistedQuery"]["sha256Hash"] == expected_hash
 
     @pytest.mark.asyncio
@@ -191,8 +193,9 @@ class TestPaginationParameters:
             await client.fetch_category_games("cat-id", offset=48, size=24)
 
             body = captured_body["data"]
-            assert body["variables"]["offset"] == 48
-            assert body["variables"]["size"] == 24
+            # Variables use nested pageArgs structure (actual PS Store schema)
+            assert body["variables"]["pageArgs"]["offset"] == 48
+            assert body["variables"]["pageArgs"]["size"] == 24
 
 
 class TestLocaleConfiguration:

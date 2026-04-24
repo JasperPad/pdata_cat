@@ -9,6 +9,7 @@ Provides four commands:
 
 from __future__ import annotations
 
+import asyncio
 import csv
 import json
 import logging
@@ -117,7 +118,7 @@ def collect_cmd(
         pipeline = CollectionPipeline(settings)
 
         try:
-            result = pipeline.run_full_collection(category, full_mode=full)
+            result = asyncio.run(pipeline.run_full_collection(category, full_mode=full))
             progress.update(task, description=f"✅ 采集完成!")
         except Exception as exc:
             progress.update(task, description=f"❌ 采集失败: {exc}")
